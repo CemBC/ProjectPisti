@@ -9,13 +9,19 @@ public class Deck{
 		this.deck = arr;
 		}
 	public String getCard(){
-		String temporary;
+		String temporary = "";
 		for(int i = 0 ; i < deck.length ; i++) {
 			if(deck[i] != null) {
 				temporary = deck[i];
 				deck[i] = null;
-				return temporary;
+				break;
 			}
+		}
+		return temporary;
+	}
+	public void ShowDeck(){
+		for(String a : deck){
+			System.out.println(a);
 		}
 	}
 				
