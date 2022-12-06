@@ -1,3 +1,4 @@
+import java.util.Random;
 public class Deck{
 	private String[] deck;
 	
@@ -24,6 +25,17 @@ public class Deck{
 			System.out.println(a);
 		}
 	}
-				
+	
+	public void Shuffle(){
+		Random rd = new Random(System.currentTimeMillis());
+		for(int i = 0 ; i < deck.length ; i++) {
+			int tempindex = rd.nextInt(deck.length);
+			String tempstring = deck[tempindex];
+			deck[tempindex] = deck[i];
+			deck[i] = tempstring;
+		}
+	}
+		
+		
 				
 }
