@@ -9,6 +9,7 @@ public class Deck{
 		"♦A","♦2","♦3","♦4","♦5","♦6","♦7","♦8","♦9","♦10","♦J","♦Q","♦K"};
 		this.deck = arr;
 		}
+	
 	public String getCard(){
 		String temporary = "";
 		for(int i = 0 ; i < deck.length ; i++) {
@@ -21,10 +22,11 @@ public class Deck{
 		return temporary;
 	}
 	public void ShowDeck(){
-		for(String a : deck){
+		for(String a : deck) {
 			System.out.println(a);
 		}
 	}
+	
 	
 	public void Shuffle(){
 		Random rd = new Random(System.currentTimeMillis());
