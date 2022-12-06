@@ -10,7 +10,7 @@ public class Deck{
 		}
 	public String getCard(){
 		String temporary;
-		for(int i = 0 ; i < deck.list ; i++) {
+		for(int i = 0 ; i < deck.length ; i++) {
 			if(deck[i] != null) {
 				temporary = deck[i];
 				deck[i] = null;
