@@ -12,12 +12,23 @@ public class GamePisti{
 		}while (count != 4);
 		board.showBoard();
 		board.getFromBoardTo(arr);
+		board.showBoard();
 		System.out.println("------------");
-		for(String a : arr){
-			System.out.println(a+" ");
+		showCache(arr);
+		
+		
+		
+		
+	}
+	
+	public static void showCache(String[] arr) {
+		System.out.print("[");
+		for(int i = 0 ; i< arr.length ; i++){
+			if(arr[i] != null){
+				System.out.print(arr[i] + " ");
+			}
 		}
-		
-		
-		
+		System.out.print("]");
+		System.out.println();
 	}
 }

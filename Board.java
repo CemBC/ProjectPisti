@@ -7,13 +7,15 @@ public class Board{
 	}
 	
 	public void showBoard(){ //Shows Board
-		System.out.print("[");
+		System.out.println("THE BOARD");
+		System.out.print("top-->[");
 		for(int i = board.length-1 ; i > -1 ; i--){
 			if(board[i] != null){
 				System.out.print(board[i] + " ");
 			}
 		}
-		System.out.print("]");
+		System.out.print("]<--bottom");
+		System.out.println("\n");
 	}
 	
 	public void getToBoard(String a){ //Adding card to board when board has null index 
@@ -26,20 +28,19 @@ public class Board{
 	}
 	
 	public void getFromBoardTo(String[] a){ 
-		int counter = -1;
+		
 		for(int i = board.length-1 ; i > -1 ; i--){
 			if(board[i] != null) {
-				counter++;
-				for(int j = counter ; j < a.length ; j++){
-					if(a[i] == null) {
+				for(int j = 0; j < a.length; j++){
+					if(a[j] == null){
 						a[j] = board[i];
-						board[i] = null;
-						break;
+						board[i]= null;
 					}
-				}
+				}		
 			}
 		}
 	}
+	
 	
 	
 }
