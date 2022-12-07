@@ -4,7 +4,7 @@ public class GamePisti{
 		deck.ShowDeck();
 		System.out.println("-----------------------");
 		deck.cutDeck();
-		deck.ShowDeck();
+		deck.ShowDeck();	
 		
 		
 		

@@ -32,7 +32,9 @@ public class Deck{
 	public void Shuffle(){ //Shuffle method with switching value way
 		Random rd = new Random(System.currentTimeMillis());
 		for(int i = 0 ; i < deck.length ; i++) {
+			
 			int tempindex = rd.nextInt(deck.length);
+			
 			String tempstring = deck[tempindex];
 			deck[tempindex] = deck[i];
 			deck[i] = tempstring;
@@ -41,11 +43,17 @@ public class Deck{
 	
 	public void cutDeck(){
 		Random rd = new Random(System.currentTimeMillis());
-		int rc = rd.nextInt(53);  		// rc = random card
+		int rc = rd.nextInt(52);  		// rc = random card
 		String [] td = new String[rc +1];     // td = top of deck
-		String [] bd = new String[52-(rc+1)];	// bd = bot of deck
-		System.arraycopy(bd,0,deck,0);
-		System.arraycopy(td,0,deck,(rc+1));
+		String [] bd = new String[52-(rc+1)];	// bd = bottom of deck
+		
+		System.arraycopy(deck,0,td,0,td.length); //copy cutted deck's top side to top of deck array
+		System.arraycopy(deck,rc+1,bd,0,bd.length); //copy cutted deck's bottom side to bottom of deck array
+		
+		System.arraycopy(bd,0,deck,0,bd.length);  //copy td to top of the main deck
+		System.arraycopy(td,0,deck,rc+1,td.length); //copy bd to bottom of the main deck
+		
+		
 	}
 		
 		
