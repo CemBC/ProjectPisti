@@ -12,7 +12,7 @@ public class GamePisti{
 		}while (count != 4);
 		board.showBoard();
 		board.getFromBoardTo(arr);
-		
+		System.out.println("------------");
 		for(String a : arr){
 			System.out.println(a+" ");
 		}

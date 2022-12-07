@@ -22,10 +22,13 @@ public class Deck{
 		}
 		return temporary;
 	}
-	public void showDeck(){
+	public void showDeck(){ //Shows deck
+		System.out.println("THE BOARD");
+		System.out.print("[")
 		for(String a : deck) {
 			System.out.print(a + " ");
 		}
+		System.out.print("]");
 	}
 	
 	
