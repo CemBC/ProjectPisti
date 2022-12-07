@@ -7,23 +7,22 @@ public class Hand{
 		this.hand = arr;
 	}
 	
-	public getFromHand(){
+	public String getFromHand(int index){
 		Scanner inp = new Scanner(System.in);
-		while(true){
-			String temp;
-			System.out.println("Which card do you want to play? Express it as 1,2,3 or 4 = ");
-			int index = inp.nextInt()-1;
-			if(hand[index] == null){
-				System.out.println("You dont have a card on that position, try again");
-				continue;
-			}
-			temp = hand[index];
-			hand[index] = null;
-		}
+		String temp;
+		temp = hand[index-1];
+		hand[index-1] = null;
 		return temp;
 	}
+		
 	
-	public getToHand(String a, String b, String c, String d) {
+	public void showHand(){
+		for(String a: hand) {
+			System.out.print(a + " ");
+		}
+	}
+	
+	public void getToHand(String a, String b, String c, String d) {
 		hand[0] = a;
 		hand[1] = b;
 		hand[2] = c;

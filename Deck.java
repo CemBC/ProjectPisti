@@ -22,9 +22,9 @@ public class Deck{
 		}
 		return temporary;
 	}
-	public void ShowDeck(){
+	public void showDeck(){
 		for(String a : deck) {
-			System.out.println(a);
+			System.out.print(a + " ");
 		}
 	}
 	
