@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 public class Deck{
 	private String[] deck;
 	
@@ -10,7 +11,7 @@ public class Deck{
 		this.deck = arr;
 		}
 	
-	public String getCard(){
+	public String getCard(){  //Getting card from top of the deck and convert that index to null so you cant get that card anymore
 		String temporary = "";
 		for(int i = 0 ; i < deck.length ; i++) {
 			if(deck[i] != null) {
@@ -28,7 +29,7 @@ public class Deck{
 	}
 	
 	
-	public void Shuffle(){
+	public void Shuffle(){ //Shuffle method with switching value way
 		Random rd = new Random(System.currentTimeMillis());
 		for(int i = 0 ; i < deck.length ; i++) {
 			int tempindex = rd.nextInt(deck.length);
@@ -37,6 +38,18 @@ public class Deck{
 			deck[i] = tempstring;
 		}
 	}
+	
+	public void cutDeck(){
+		Random rd = new Random(System.currentTimeMillis());
+		int rc = rd.nextInt(53);  		// rc = random card
+		String [] td = new String[rc +1];     // td = top of deck
+		String [] bd = new String[52-(rc+1)];	// bd = bot of deck
+		System.arraycopy(bd,0,deck,0);
+		System.arraycopy(td,0,deck,(rc+1));
+	}
+		
+		
+		
 		
 		
 				
