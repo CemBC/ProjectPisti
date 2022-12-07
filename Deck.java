@@ -50,8 +50,8 @@ public class Deck{
 		System.arraycopy(deck,0,td,0,td.length); //copy cutted deck's top side to top of deck array
 		System.arraycopy(deck,rc+1,bd,0,bd.length); //copy cutted deck's bottom side to bottom of deck array
 		
-		System.arraycopy(bd,0,deck,0,bd.length);  //copy td to top of the main deck
-		System.arraycopy(td,0,deck,rc+1,td.length); //copy bd to bottom of the main deck
+		System.arraycopy(bd,0,deck,0,bd.length);  //copy bd to top of the main deck
+		System.arraycopy(td,0,deck,rc+1,td.length); //copy td to bottom of the main deck
 		
 		
 	}
