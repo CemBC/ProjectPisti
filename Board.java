@@ -7,7 +7,7 @@ public class Board{
 	}
 	
 	public void showBoard(){
-		for(int i = board.length ; i > -1 ; i--){
+		for(int i = board.length-1 ; i > -1 ; i--){
 			if(board[i] != null){
 				System.out.print(board[i] + " ");
 			}
@@ -23,10 +23,11 @@ public class Board{
 		}
 	}
 	
-	public String getFromBoardTo(String[] a){
-		for(int i = board.length ; i > -1 ; i--){
+	public void getFromBoardTo(String[] a){
+		int counter = 0;
+		for(int i = board.length-1 ; i > -1 ; i--){
 			if(board[i] != null) {
-				for(int j = 0 ; j < a.length ; j++){
+				for(int j = counter++ ; j < a.length ; j++){
 					if(a[i] == null) {
 						a[j] = board[i];
 						board[i] = null;

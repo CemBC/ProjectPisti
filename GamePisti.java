@@ -3,14 +3,19 @@ public class GamePisti{
 		Deck deck = new Deck();
 		Hand hand = new Hand();
 		Board board = new Board();
+		String [] arr = new String[52];
 		board.showBoard();
-		count = 0;
+		int count = 0;
 		do{
-			board.getToBoard(deck.getCard);
+			board.getToBoard(deck.getCard());
 			count += 1;
-		}(while count != 3);
+		}while (count != 4);
 		board.showBoard();
-		board.getFromBoardto(hand);
+		board.getFromBoardTo(arr);
+		
+		for(String a : arr){
+			System.out.println(a+" ");
+		}
 		
 		
 		
