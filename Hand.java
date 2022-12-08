@@ -14,6 +14,10 @@ public class Hand{
 		hand[index-1] = null;
 		return temp;
 	}
+	
+	public String[] get(){
+		return hand;
+	}
 		
 	
 	public void showHand(){ //Shows Hand

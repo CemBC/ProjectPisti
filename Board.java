@@ -18,6 +18,10 @@ public class Board{
 		System.out.println("\n");
 	}
 	
+	public String[] get(){
+		return board;
+	}
+	
 	public void getToBoard(String a){ //Adding card to board when board has null index 
 		for(int i = 0 ; i< board.length ; i++){
 			if(board[i] == null){

@@ -50,6 +50,8 @@ public class GamePisti{
 				System.out.println("You are the dealer, I go first on each round");
 				dealer = 2;
 			}
+			
+			
 			for(int i = 0; i< 4 ; i++){
 				board.getToBoard(deck.getCard());
 			}

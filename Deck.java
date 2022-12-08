@@ -9,7 +9,13 @@ public class Deck{
 		"HA","H2","H3","H4","H5","H6","H7","H8","H9","H10","HJ","HQ","HK",
 		"DA","D2","D3","D4","D5","D6","D7","D8","D9","D10","DJ","DQ","DK"};
 		this.deck = arr;
-		}
+	}
+	
+	public String[] get(){
+		return deck;
+	}
+	
+	
 	
 	public String getCard(){  //Getting card from top of the deck and convert that index to null so you cant get that card anymore
 		String temporary = "";
