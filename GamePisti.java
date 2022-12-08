@@ -64,7 +64,7 @@ public class GamePisti{
 				if(dealer== 1) {
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					
+					System.out.println(turnCh(board.get(),hand_player.get()));
 					
 					
 					
@@ -80,7 +80,7 @@ public class GamePisti{
 				}else{
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					
+					System.out.println(turnCh(board.get(),hand_player.get()));
 					
 					
 					
@@ -148,11 +148,11 @@ public class GamePisti{
 	public static int turnCh(String[] board,String[] hand){
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Your turn mate!");
-		showBoard();
-		showHand();
+		showBoard(board);
+		showHand(hand);
 		System.out.println("Choose your card to play");
 		int ch = inp.nextInt();
-		
+		return ch;
 		
 		
 		
@@ -182,7 +182,8 @@ public class GamePisti{
 			System.out.print(a + ", ");
 		}
 		System.out.print("]");
-		System.out.println(" 1  2  3  4 ");
+		System.out.println();
+		System.out.println(" 1   2    3    4 ");
 		System.out.println("\n");
 	}
 		
