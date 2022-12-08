@@ -64,9 +64,40 @@ public class GamePisti{
 				if(dealer== 1) {
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				}else{
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				}
 				
 				
@@ -114,5 +145,45 @@ public class GamePisti{
 	}
 	
 	
+	public static int turnCh(String[] board,String[] hand){
+		Scanner inp = new Scanner(System.in);
+		System.out.println("Your turn mate!");
+		showBoard();
+		showHand();
+		System.out.println("Choose your card to play");
+		int ch = inp.nextInt();
+		
+		
+		
+		
+	
+	}
+	
+	public static void showBoard(String [] board){ //Shows Board
+		System.out.println("THE BOARD");
+		System.out.print("top-->[");
+		for(int i = board.length-1 ; i > -1 ; i--){
+			if(board[i] != null){
+				System.out.print(board[i] + " ");
+			}
+		}
+		System.out.print("]<--bottom");
+		System.out.println("\n");
+	}
+	
+	
+	
+	
+	
+	public static void showHand(String[] hand){ //Shows Hand
+		System.out.println("THE HAND");
+		System.out.print("[");
+		for(String a: hand) {
+			System.out.print(a + ", ");
+		}
+		System.out.print("]");
+		System.out.println(" 1  2  3  4 ");
+		System.out.println("\n");
+	}
 		
 }

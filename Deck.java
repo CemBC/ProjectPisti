@@ -28,6 +28,7 @@ public class Deck{
 		}
 		return temporary;
 	}
+	
 	public void showDeck(){ //Shows deck
 		System.out.println("THE DECK");
 		System.out.print("[");

@@ -6,17 +6,6 @@ public class Board{
 		this.board = arr;
 	}
 	
-	public void showBoard(){ //Shows Board
-		System.out.println("THE BOARD");
-		System.out.print("top-->[");
-		for(int i = board.length-1 ; i > -1 ; i--){
-			if(board[i] != null){
-				System.out.print(board[i] + " ");
-			}
-		}
-		System.out.print("]<--bottom");
-		System.out.println("\n");
-	}
 	
 	public String[] get(){
 		return board;

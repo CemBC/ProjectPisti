@@ -20,15 +20,7 @@ public class Hand{
 	}
 		
 	
-	public void showHand(){ //Shows Hand
-		System.out.println("THE HAND");
-		System.out.print("[");
-		for(String a: hand) {
-			System.out.print(a + ", ");
-		}
-		System.out.print("]");
-		System.out.println("\n");
-	}
+	
 	
 	public void getToHand(String a, String b, String c, String d) { //Adding hand 4 card, I used simple code because user gets card when user's hand is empty
 		hand[0] = a;
