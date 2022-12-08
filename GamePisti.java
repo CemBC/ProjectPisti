@@ -5,16 +5,18 @@ public class GamePisti{
 		Scanner inp = new Scanner(System.in);
 		Random rd = new Random(System.currentTimeMillis());
 		
-		Deck deck = new Deck();
-		Hand hand = new Hand();
-		Board board = new Board();
 		
-		String ch;
-		int dealer;
 		
 		while(true) {
+			Deck deck = new Deck();
+			Hand hand_computer = new Hand();
+			Hand hand_player = new Hand();
+			Board board = new Board();
 			boolean flag = true;
 			
+			
+			String choice;
+			int dealer;
 			
 			
 			System.out.println("\t THE GAME PİŞTİ \n");
@@ -26,42 +28,48 @@ public class GamePisti{
 				System.out.println("See you in next game");
 				break;
 			}
+			System.out.println("We'll toss a coin to choose dealer");
+			System.out.println("Head or Tail ? ");
+			System.out.println("HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;				
+			choice = inp.nextLine();
+			int head_tail= 0;  //1 = head    2 = tail
+			if(choice.equals("head")){
+				head_tail = 1;
+			}else if(choice.equals("tai")){
+				head_tail=2;
+			}else{
+				head_tail = rd.nextInt(2)+1;
+			}
+					
+			int computer_random_choice= rd.nextInt(2)+1;
 			
+			if(computer_random_choice == head_tail){ //1 = dealer is computer      2 = dealer is player
+				System.out.println("I am the dealer, You go first on each round");
+				dealer = 1;
+			}else{
+				System.out.println("You are the dealer, I go first on each round");
+				dealer = 2;
+			}
+			for(int i = 0; i< 4 ; i++){
+				board.getToBoard(deck.getCard());
+			}
 			
-			
-			do{
-				System.out.println("We'll toss a coin to choose dealer");
-					System.out.println("Head or Tail ? ");
-					System.out.println("HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;
-					choice = inp.nextLine();
-					int head_tail= 0;  //1 = head    2 = tail;
-					switch(choice){
-						case "head":
-						case "Head":
-						case "HEAD":
-							head_tail = 1;
-							break;
-						case "Tail":
-						case "TAİL":
-						case "tail":
-							head_tail = 2;
-							break;
-						default:
-							head_tail = rd.nextInt(2)+1;
-							break;
+			while(true){
+				flag = deck.checkDeck();	
+					if(flag == false){
+					break;
+				}
+				if(dealer== 1) {
+					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+				}else{
+					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+				}
+				
+				
+				
 						
-					}
-					
-					int computer_random_choice = inp.nextInt(2)+1;
-					
-					if(computer_random_choice == head_tail){ //1 = dealer is computer      2 = dealer is player
-						System.out.println("I am the dealer, You go first on each round");
-						dealer = 1;
-					}else{
-						System.out.println("You are the dealer, I go first on each round");
-						dealer = 2;
-					}
-						
 					
 				
 				
@@ -83,10 +91,8 @@ public class GamePisti{
 				
 				
 				
-				
-				
-				flag = deck.checkDeck();
-			}while(flag != false);
+			
+			}
 		
 		
 		
@@ -104,4 +110,7 @@ public class GamePisti{
 		System.out.print("]");
 		System.out.println();
 	}
+	
+	
+		
 }
