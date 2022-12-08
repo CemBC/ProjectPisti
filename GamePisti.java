@@ -1,24 +1,54 @@
+import java.util.Scanner;
 public class GamePisti{
 	public static void main(String [] args){
+		Scanner inp = new Scanner(System.in);
+		
 		Deck deck = new Deck();
 		Hand hand = new Hand();
 		Board board = new Board();
-		String [] arr = new String[52];
-		board.showBoard();
-		int count = 0;
-		do{
-			board.getToBoard(deck.getCard());
-			count += 1;
-		}while (count != 4);
-		board.showBoard();
-		board.getFromBoardTo(arr);
-		board.showBoard();
-		System.out.println("------------");
-		showCache(arr);
+		
+		while(true) {
+			boolean flag = true;
+			
+			
+			
+			System.out.println("\t THE GAME PİŞTİ ");
+			System.out.println("Press \"Q\" to quit the game");
+			System.out.println("Or press anything except \"Q\" to start game");
+			String Choice = inp.nextLine();
+			if(Choice.equals("q")){
+				System.out.println("See you in next game");
+				break;
+			}
+			do{
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				flag = deck.checkDeck();
+			}while(flag != false);
 		
 		
 		
 		
+		}
 	}
 	
 	public static void showCache(String[] arr) {

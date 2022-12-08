@@ -59,6 +59,18 @@ public class Deck{
 		
 		
 	}
+	
+	
+	public boolean checkDeck(){
+		boolean flag = false;
+		for(int i = 0; i < deck.length ; i++){
+			if(deck[i] != null){
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
 		
 		
 		
