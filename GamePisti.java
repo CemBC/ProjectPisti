@@ -64,8 +64,11 @@ public class GamePisti{
 				if(dealer== 1) {
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					System.out.println(turnCh(board.get(),hand_player.get()));
 					
+					//Turn user
+					String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
+					board.getToBoard(card);
+					showBoard(board.get());
 					
 					
 					
@@ -80,7 +83,7 @@ public class GamePisti{
 				}else{
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					System.out.println(turnCh(board.get(),hand_player.get()));
+					
 					
 					
 					
@@ -186,5 +189,10 @@ public class GamePisti{
 		System.out.println(" 1   2    3    4 ");
 		System.out.println("\n");
 	}
+	
+	
+	
+	
+	
 		
 }
