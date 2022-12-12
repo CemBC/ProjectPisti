@@ -54,7 +54,7 @@ public class Deck{
 	
 	public void cutDeck(){
 		Random rd = new Random(System.currentTimeMillis());
-		int rc = rd.nextInt(50)+2;  		// rc = random card
+		int rc = rd.nextInt(49)+2;  		// rc = random card
 		String [] td = new String[rc];     // td = top of deck
 		String [] bd = new String[52-rc];	// bd = bottom of deck
 		
