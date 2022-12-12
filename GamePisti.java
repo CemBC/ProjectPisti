@@ -168,7 +168,12 @@ public class GamePisti{
 		int ch = 0;
 		while(true){
 			System.out.println("Choose your card to play");
+			try {
 			ch = inp.nextInt();
+			} catch ( Exception e ) {	
+				System.out.println("Invalid Syntax");
+				turnCh(board, hand);
+			}
 			if(ch < 1 || ch > 4){
 				System.out.println("There is no such a card choose carefully");
 				continue;
