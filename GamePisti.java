@@ -95,7 +95,7 @@ public class GamePisti{
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					
-					
+					//burası boş diye çalışmıyor şu ana kadar her şey doğru çıldırma lütfen
 					
 					
 					
