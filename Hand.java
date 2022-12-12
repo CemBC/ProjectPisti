@@ -8,7 +8,6 @@ public class Hand{
 	}
 	
 	public String getFromHand(int index){  //getting card index from user and equalize that temporary value, then equalize that index to null so user cant chose that card anymore
-		Scanner inp = new Scanner(System.in);
 		String temp;
 		temp = hand[index-1];
 		hand[index-1] = null;

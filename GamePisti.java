@@ -35,7 +35,7 @@ public class GamePisti{
 			int head_tail= 0;  //1 = head    2 = tail
 			if(choice.equals("head")){
 				head_tail = 1;
-			}else if(choice.equals("tai")){
+			}else if(choice.equals("tail")){
 				head_tail=2;
 			}else{
 				head_tail = rd.nextInt(2)+1;
@@ -51,19 +51,30 @@ public class GamePisti{
 				dealer = 2;
 			}
 			
+		     deck.Shuffle();
+			/* for(int i = 0; i < deck.get().length; i++){
+				System.out.print(deck.get()[i] + " ");
+			} 
+			System.out.println("-------------------"); */
+			 deck.cutDeck(); 
+			/* for(int i = 0; i < deck.get().length; i++){
+				System.out.print(deck.get()[i] + " ");
+			} */
+			
+			
 			
 			for(int i = 0; i< 4 ; i++){
 				board.getToBoard(deck.getCard());
 			}
 			
 			while(true){
-				flag = deck.checkDeck();	
-					if(flag == false){
+				if(check(deck.get())){
 					break;
-				}
+					}
 				if(dealer== 1) {
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					
 					
 					//Turn user
 					String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
@@ -83,6 +94,7 @@ public class GamePisti{
 				}else{
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					
 					
 					
 					
@@ -153,13 +165,18 @@ public class GamePisti{
 		System.out.println("Your turn mate!");
 		showBoard(board);
 		showHand(hand);
-		System.out.println("Choose your card to play");
-		int ch = inp.nextInt();
+		int ch = 0;
+		while(true){
+			System.out.println("Choose your card to play");
+			ch = inp.nextInt();
+			if(ch < 1 || ch > 4){
+				System.out.println("There is no such a card choose carefully");
+				continue;
+			}else {
+				break;
+			}
+		}
 		return ch;
-		
-		
-		
-	
 	}
 	
 	public static void showBoard(String [] board){ //Shows Board
@@ -189,6 +206,29 @@ public class GamePisti{
 		System.out.println(" 1   2    3    4 ");
 		System.out.println("\n");
 	}
+	
+	public static void showDeck(String [] deck) {
+		System.out.println("THE DECK");
+		System.out.print("top-->[");
+		for(int i = deck.length-1 ; i > -1 ; i--){
+			if(deck[i] != null){
+				System.out.print(deck[i] + " ");
+			}
+		}
+		System.out.print("]<--bottom");
+		System.out.println("\n");
+	}
+	
+	
+	public static boolean check(String [] arr) {
+		for(int i = 0 ; i < arr.length ; i++){
+			if(arr[i] != null){
+				return false;
+			}
+		}
+		return true;
+	}
+		
 	
 	
 	

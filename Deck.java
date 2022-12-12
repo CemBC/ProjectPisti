@@ -4,10 +4,10 @@ public class Deck{
 	private String[] deck;
 	
 	public Deck() {
-		String [] arr = {"SA","S2","S3","S4","S5","S6","S7","S8","S9","S10","SJ","SQ","SK",
-		"CA","C2","C3","C4","C5","C6","C7","C8","C9","C10","CJ","CQ","CK",
-		"HA","H2","H3","H4","H5","H6","H7","H8","H9","H10","HJ","HQ","HK",
-		"DA","D2","D3","D4","D5","D6","D7","D8","D9","D10","DJ","DQ","DK"};
+		String [] arr = {"♠A","♠2","♠3","♠4","♠5","♠6","♠7","♠8","♠9","♠10","♠J","♠Q","♠K",
+		"♣A","♣2","♣3","♣4","♣5","♣6","♣7","♣8","♣9","♣10","♣J","♣Q","♣K",
+		"♥A","♥2","♥3","♥4","♥5","♥6","♥7","♥8","♥9","♥10","♥J","♥Q","♥K",
+		"♦A","♦2","♦3","♦4","♦5","♦6","♦7","♦8","♦9","♦10","♦J","♦Q","♦K"};
 		this.deck = arr;
 	}
 	
@@ -54,30 +54,22 @@ public class Deck{
 	
 	public void cutDeck(){
 		Random rd = new Random(System.currentTimeMillis());
-		int rc = rd.nextInt(52);  		// rc = random card
-		String [] td = new String[rc +1];     // td = top of deck
-		String [] bd = new String[52-(rc+1)];	// bd = bottom of deck
+		int rc = rd.nextInt(50)+2;  		// rc = random card
+		String [] td = new String[rc];     // td = top of deck
+		String [] bd = new String[52-rc];	// bd = bottom of deck
 		
 		System.arraycopy(deck,0,td,0,td.length); //copy cutted deck's top side to top of deck array
-		System.arraycopy(deck,rc+1,bd,0,bd.length); //copy cutted deck's bottom side to bottom of deck array
+		System.arraycopy(deck,rc,bd,0,bd.length); //copy cutted deck's bottom side to bottom of deck array
 		
 		System.arraycopy(bd,0,deck,0,bd.length);  //copy bd to top of the main deck
-		System.arraycopy(td,0,deck,rc+1,td.length); //copy td to bottom of the main deck
+		System.arraycopy(td,0,deck,bd.length,td.length); //copy td to bottom of the main deck
 		
 		
 	}
 	
 	
-	public boolean checkDeck(){
-		boolean flag = false;
-		for(int i = 0; i < deck.length ; i++){
-			if(deck[i] != null){
-				flag = true;
-				break;
-			}
-		}
-		return flag;
-	}
+
+		
 		
 		
 		
