@@ -16,6 +16,8 @@ public class GamePisti{
 			boolean flag = true;
 			String choice;          //Adding variables for future codes
 			int dealer;
+			String [] cache_user = new String[52];
+			String [] cache_computer = new String[52];
 			
 			//
 			System.out.println("\t THE GAME PİŞTİ \n");
@@ -238,6 +240,43 @@ public class GamePisti{
 		}
 		return true;
 	}
+	
+	
+	public static void addToCache(String [] board , String [] cache , boolean a ) {
+		if(a) {
+			
+		}
+	
+	
+	public static boolean gameRules(String[] board , String [] cache, int point  ) {
+		for(int i = board.length-1 ; i > -1 ; i--) {
+			if(board[i] != null) {
+				if(board[i].substring(1,board[i].length()).equals("J") {
+					return true;
+				
+				}else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality 
+					return true;
+				
+				}else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
+					point += 10;
+					System.out.println("PİŞTİ!!");
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
+	}
+					
+				
+				
+				
+				
+				
+				
+				
+			}
+		
 		
 	
 	
