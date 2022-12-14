@@ -77,25 +77,25 @@ public class GamePisti{
 				if(dealer== 1) {
 
 					for(int i = 0 ; i < 6 ; i ++) {
-						if(i % 2 == 0) {
+						
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 	
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
-							//adding interface
+							if(gameRules(board.get(),user_point)) {
+								System.out.println("YOU GET THE BOARD!");
+							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
 							
 							
+							//Turn Computer
 							
-						}
-						else if ( i % 2 == 1 ) {
-							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							
+							
 						
 						
-						}
 					
 					}
 					
@@ -106,29 +106,28 @@ public class GamePisti{
 					
 					
 					
-				}else{
+				}else{ // dealer is you
 					
 					
 					
 					
 					for(int i = 0 ; i < 6 ; i ++) {
-						if(i % 2 == 1) {
-							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+						
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							
+							//Turn Computer 
 	
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
-							
-							//adding interface
+							if(gameRules(board.get(),user_point)) {
+								System.out.println("YOU GET THE BOARD!");
+							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
 							
-						}
-						else if(i % 2 == 0) {
-							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					
-						}
+						
+						
 					}
 				}
 				
@@ -258,31 +257,33 @@ public class GamePisti{
 	
 	
 	public static boolean gameRules(String[] board , int point  ) {
-		boolean flag = false;
-		for(int i = board.length-1 ; i > -1 ; i--) {
-			if(board[i] != null) {
-				if(board[i].substring(1,board[i].length()).equals("J")) {
-					flag = true;
-					break;
-				
-				}else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality 
-					flag = true;
-					break;
-				
-				}else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
-					point += 10;
-					System.out.println("PİŞTİ!!");
-					flag = true;
-					break;
+        boolean flag = false;
+        for(int i = board.length-1 ; i > -1 ; i--) {
+            if(board[i] != null) {
+                if(i >= 1) {
+
+                if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
+                    point += 10;
+                    System.out.println("PİŞTİ!!");
+                    flag = true;
+                    break;
+                }else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality
+                        flag = true;
+                        break;
+
+                }
+				}else if(board[i].substring(1,board[i].length()).equals("J")) {
+                flag = true;
+                break;
+
 				}else {
-					flag = false;
-					break;
-				}
-				}
-				
-			}
-			return flag;
+                    flag = false;
+                    break;
+                }
+            }
 		}
+        return flag;
+        }
 		
 		
 		
