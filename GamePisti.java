@@ -102,57 +102,31 @@ public class GamePisti{
 					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					
-					//burası boş diye çalışmıyor şu ana kadar her şey doğru çıldırma lütfen
 					
 					
+					for(int i = 0 ; i < 6 ; i ++) {
+						if(i % 2 == 1) {
+							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+	
+							//Turn user
+							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
+							board.getToBoard(card);
+							
+						}
+						else if(i % 2 == 0) {
+							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+						}
+					}
 				}
-				
-				
-				
-						
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			
-			}
 		
 		
 		
 		
 		}
+	    }	
 	}
 	
 	public static void showCache(String[] arr) { //showing the cache of the user or computer
@@ -248,7 +222,7 @@ public class GamePisti{
 				if(cache[i] == null) {
 					for(int j = 0 ; j < board.length ; j++) {
 						if(board[j] == null) {
-							System.arraycoppy(board,0,cache,i,j);
+							System.arraycopy(board,0,cache,i,j);
 							break;
 						}
 					}
@@ -261,24 +235,47 @@ public class GamePisti{
 	
 	
 	public static boolean gameRules(String[] board , String [] cache, int point  ) {
+		boolean flag = false;
 		for(int i = board.length-1 ; i > -1 ; i--) {
 			if(board[i] != null) {
-				if(board[i].substring(1,board[i].length()).equals("J") {
-					return true;
+				if(board[i].substring(1,board[i].length()).equals("J")) {
+					flag = true;
+					break;
 				
 				}else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality 
-					return true;
+					flag = true;
+					break;
 				
 				}else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
 					point += 10;
 					System.out.println("PİŞTİ!!");
-					return true;
-				} else {
-					return false;
+					flag = true;
+					break;
+				}else {
+					flag = false;
+					break;
 				}
+				}
+				
 			}
+			return flag;
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 					
 				
 				
@@ -287,13 +284,12 @@ public class GamePisti{
 				
 				
 				
-			}
-		
-		
-	
-	
-	
-	
 	
 		
-}
+		
+	
+	
+	
+	
+	
+		
