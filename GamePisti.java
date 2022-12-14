@@ -73,13 +73,9 @@ public class GamePisti{
 				board.getToBoard(deck.getCard());
 			}
 			
-			while(true){
-				if(check(deck.get())){  //the code that checks decks indexes, when all is null breaking the loop
-					break;				//I ll delete that code when I believe codes work well
-					}
+			
 				if(dealer== 1) {
-					
-					
+
 					for(int i = 0 ; i < 6 ; i ++) {
 						if(i % 2 == 0) {
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
@@ -89,11 +85,7 @@ public class GamePisti{
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
-							for(int h = 0 ; h < cache_user.length ; h ++) {
-								if(cache_user[h] != null) {
-									System.out.print(cache_user[h] + " ");
-								}
-							}
+							
 							
 						}
 						else if ( i % 2 == 1 ) {
@@ -126,11 +118,7 @@ public class GamePisti{
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
-							for(int h = 0 ; h < cache_user.length ; h ++) {
-								if(cache_user[h] != null) {
-									System.out.print(cache_user[h] + " ");
-								}
-							}
+							
 						}
 						else if(i % 2 == 0) {
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
@@ -143,7 +131,7 @@ public class GamePisti{
 		
 		
 		
-		}
+		
 	    }	
 	}
 	
