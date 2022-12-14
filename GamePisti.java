@@ -18,6 +18,8 @@ public class GamePisti{
 			int dealer;
 			String [] cache_user = new String[52];
 			String [] cache_computer = new String[52];
+			int user_point = 0 ;
+			int computer_point = 0;
 			
 			//
 			System.out.println("\t THE GAME PİŞTİ \n");
@@ -86,6 +88,12 @@ public class GamePisti{
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
+							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
+							for(int h = 0 ; h < cache_user.length ; h ++) {
+								if(cache_user[h] != null) {
+									System.out.print(cache_user[h] + " ");
+								}
+							}
 							
 						}
 						else if ( i % 2 == 1 ) {
@@ -117,7 +125,12 @@ public class GamePisti{
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
-							
+							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
+							for(int h = 0 ; h < cache_user.length ; h ++) {
+								if(cache_user[h] != null) {
+									System.out.print(cache_user[h] + " ");
+								}
+							}
 						}
 						else if(i % 2 == 0) {
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
@@ -223,23 +236,29 @@ public class GamePisti{
 	
 	public static void addToCache(String [] board , String [] cache , boolean a ) {
 		if(a) {
+			int temp = 0;
 			for(int i = 0 ; i < cache.length ; i++) {
 				if(cache[i] == null) {
-					for(int j = 0 ; j < board.length ; j++) {
-						if(board[j] == null) {
-							System.arraycopy(board,0,cache,i,j);
-							break;
-						}
-					}
+					temp = i;
+					break;
+				}
+			}	
+			for(int j = 0 ; j < board.length ; j++) {
+				if(board[j] == null) {
+					System.arraycopy(board,0,cache,temp,j);
+					break;
 				}
 			}
+					
+			}
 		}
-	}
+		
+	
 			
 		
 	
 	
-	public static boolean gameRules(String[] board , String [] cache, int point  ) {
+	public static boolean gameRules(String[] board , int point  ) {
 		boolean flag = false;
 		for(int i = board.length-1 ; i > -1 ; i--) {
 			if(board[i] != null) {
@@ -268,34 +287,8 @@ public class GamePisti{
 		
 		
 		
-		
-	public static int computerch(String [] board, String [] hand ) {
-		
+}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	}
 	
 	
 	
