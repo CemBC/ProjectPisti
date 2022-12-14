@@ -88,6 +88,12 @@ public class GamePisti{
 							board.getToBoard(card);
 							
 						}
+						else if ( i % 2 == 1 ) {
+							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+						
+						
+						}
 					
 					}
 					
@@ -99,8 +105,7 @@ public class GamePisti{
 					
 					
 				}else{
-					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+					
 					
 					
 					
@@ -260,6 +265,36 @@ public class GamePisti{
 			}
 			return flag;
 		}
+		
+		
+		
+		
+	public static int computerch(String [] board, String [] hand ) {
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	}
 	
 	
