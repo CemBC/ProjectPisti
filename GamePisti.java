@@ -84,7 +84,9 @@ public class GamePisti{
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
+							//adding interface
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
+							
 							
 							
 						}
@@ -117,6 +119,8 @@ public class GamePisti{
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
+							
+							//adding interface
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
 							
 						}
@@ -127,6 +131,7 @@ public class GamePisti{
 						}
 					}
 				}
+				
 		
 		
 		
@@ -237,9 +242,15 @@ public class GamePisti{
 					break;
 				}
 			}
+			
+			for(int i = 0 ; i < board.length ; i++) {
+				if(board[i] != null) {
+					board[i] = null;
+				}
 					
 			}
 		}
+	}
 		
 	
 			
