@@ -1,4 +1,3 @@
-import java.util.Scanner;
 public class Hand{
 	private String[] hand;
 	
@@ -14,14 +13,14 @@ public class Hand{
 		return temp;
 	}
 	
-	public String[] get(){
+	public String[] get(){ //getting String[] hand
 		return hand;
 	}
 		
 	
 	
 	
-	public void getToHand(String a, String b, String c, String d) { //Adding hand 4 card, I used simple code because user gets card when user's hand is empty
+	public void getToHand(String a, String b, String c, String d) { //Adding hand 4 card, I used simple code because ı already wrote the code that has called "getCard()" into the deck class
 		hand[0] = a;
 		hand[1] = b;
 		hand[2] = c;

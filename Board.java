@@ -7,7 +7,7 @@ public class Board{
 	}
 	
 	
-	public String[] get(){
+	public String[] get(){ //getting String[] board
 		return board;
 	}
 	
@@ -20,7 +20,7 @@ public class Board{
 		}
 	}
 	
-	public void getFromBoardTo(String[] a){ 
+	public void getFromBoardTo(String[] a){ // reversed for loop gettin all board to cache 
 		
 		for(int i = board.length-1 ; i > -1 ; i--){
 			if(board[i] != null) {

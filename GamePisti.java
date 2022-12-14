@@ -8,17 +8,16 @@ public class GamePisti{
 		
 		
 		while(true) {
-			Deck deck = new Deck();
+			Deck deck = new Deck();				//{
 			Hand hand_computer = new Hand();
-			Hand hand_player = new Hand();
-			Board board = new Board();
+			Hand hand_player = new Hand();     //Adding objects to the main code
+			Board board = new Board();         // }
+			
 			boolean flag = true;
-			
-			
-			String choice;
+			String choice;          //Adding variables for future codes
 			int dealer;
 			
-			
+			//
 			System.out.println("\t THE GAME PİŞTİ \n");
 			System.out.println("Press \"Q\" to quit the game");
 			System.out.println("Or press anything except \"Q\" to start game");
@@ -28,6 +27,7 @@ public class GamePisti{
 				System.out.println("See you in next game");
 				break;
 			}
+			//User İnterface
 			System.out.println("We'll toss a coin to choose dealer");
 			System.out.println("Head or Tail ? ");
 			System.out.println("HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;				
@@ -51,38 +51,43 @@ public class GamePisti{
 				dealer = 2;
 			}
 			
-		     deck.Shuffle();
+			//Tossing coin to decide dealer
+			
+		     deck.Shuffle();   //shuffle method with array's displayer
 			/* for(int i = 0; i < deck.get().length; i++){
 				System.out.print(deck.get()[i] + " ");
 			} 
 			System.out.println("-------------------"); */
-			 deck.cutDeck(); 
+			 deck.cutDeck();  //cut method with array's displayer
 			/* for(int i = 0; i < deck.get().length; i++){
 				System.out.print(deck.get()[i] + " ");
 			} */
 			
 			
 			
-			for(int i = 0; i< 4 ; i++){
+			for(int i = 0; i< 4 ; i++){   //getting 4 card to the board
 				board.getToBoard(deck.getCard());
 			}
 			
 			while(true){
-				if(check(deck.get())){
-					break;
+				if(check(deck.get())){  //the code that checks decks indexes, when all is null breaking the loop
+					break;				//I ll delete that code when I believe codes work well
 					}
 				if(dealer== 1) {
-					hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-					hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 					
 					
-					//Turn user
-					String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
-					board.getToBoard(card);
-					showBoard(board.get());
+					for(int i = 0 ; i < 6 ; i ++) {
+						if(i % 2 == 0) {
+							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+	
+							//Turn user
+							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
+							board.getToBoard(card);
+							
+						}
 					
-					
-					
+					}
 					
 					
 					
@@ -148,7 +153,7 @@ public class GamePisti{
 		}
 	}
 	
-	public static void showCache(String[] arr) {
+	public static void showCache(String[] arr) { //showing the cache of the user or computer
 		System.out.print("[");
 		for(int i = 0 ; i< arr.length ; i++){
 			if(arr[i] != null){
@@ -160,7 +165,7 @@ public class GamePisti{
 	}
 	
 	
-	public static int turnCh(String[] board,String[] hand){
+	public static int turnCh(String[] board,String[] hand){ //turnCh = turn choice
 		Scanner inp = new Scanner(System.in);
 		System.out.println("Your turn mate!");
 		showBoard(board);
@@ -212,7 +217,7 @@ public class GamePisti{
 		System.out.println("\n");
 	}
 	
-	public static void showDeck(String [] deck) {
+	public static void showDeck(String [] deck) { //Shows Deck
 		System.out.println("THE DECK");
 		System.out.print("top-->[");
 		for(int i = deck.length-1 ; i > -1 ; i--){
@@ -225,7 +230,7 @@ public class GamePisti{
 	}
 	
 	
-	public static boolean check(String [] arr) {
+	public static boolean check(String [] arr) { //Checking deck's empty indexes
 		for(int i = 0 ; i < arr.length ; i++){
 			if(arr[i] != null){
 				return false;

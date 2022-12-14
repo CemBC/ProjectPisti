@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.util.Scanner;
 public class Deck{
 	private String[] deck;
 	
@@ -11,7 +10,7 @@ public class Deck{
 		this.deck = arr;
 	}
 	
-	public String[] get(){
+	public String[] get(){ //getting String[] deck
 		return deck;
 	}
 	
