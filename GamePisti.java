@@ -244,8 +244,20 @@ public class GamePisti{
 	
 	public static void addToCache(String [] board , String [] cache , boolean a ) {
 		if(a) {
-			
+			for(int i = 0 ; i < cache.length ; i++) {
+				if(cache[i] == null) {
+					for(int j = 0 ; j < board.length ; j++) {
+						if(board[j] == null) {
+							System.arraycoppy(board,0,cache,i,j);
+							break;
+						}
+					}
+				}
+			}
 		}
+	}
+			
+		
 	
 	
 	public static boolean gameRules(String[] board , String [] cache, int point  ) {
