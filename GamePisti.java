@@ -339,8 +339,10 @@ public class GamePisti{
 			
 			if(card_in_board >= 3) {
 				for(int h = 0 ; h < hand.length ; h++) {
-					if(hand[h].substring(1,hand[h].length()).equals("J")){
+					if(hand[h] != null) {
+						if(hand[h].substring(1,hand[h].length()).equals("J")){
 						return h+1;
+						}
 					}
 				}
 			}else{
