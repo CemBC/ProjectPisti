@@ -92,7 +92,10 @@ public class GamePisti{
 							}
 							else{
 							//Turn Computer
+							showHand(hand_computer.get());
+							System.out.println("-------");
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
+							System.out.println(c_card);
 							board.getToBoard(c_card);
 							if(gameRules(board.get(),computer_point)) {
 								System.out.println("I get the board!");
@@ -129,7 +132,10 @@ public class GamePisti{
 								
 								
 							//Turn Computer
+							showHand(hand_computer.get());
+							System.out.println("-------");
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
+							System.out.println(c_card);
 							board.getToBoard(c_card);
 							if(gameRules(board.get(),computer_point)) {
 								System.out.println("I get the board!");
@@ -194,6 +200,9 @@ public class GamePisti{
 			if(ch < 1 || ch > 4){
 				System.out.println("There is no such a card choose carefully");
 				continue;
+			}else if(hand[ch-1] == null){
+				System.out.println("You have already played that card choose another");
+				continue;
 			}else {
 				break;
 			}
@@ -220,8 +229,12 @@ public class GamePisti{
 	public static void showHand(String[] hand){ //Shows Hand
 		System.out.println("THE HAND");
 		System.out.print("[");
-		for(String a: hand) {
-			System.out.print(a + ", ");
+		for(int i = 0 ; i < hand.length ; i++) {
+			if(hand[i] != null) {
+				System.out.print(hand[i] + ", ");
+			}else {
+				System.out.print(" #" + ", ");
+			}
 		}
 		System.out.print("]");
 		System.out.println();
@@ -316,6 +329,8 @@ public class GamePisti{
 			Random rd = new Random(System.currentTimeMillis());
 			boolean flag = false;
 			int temp_index = 0;
+			int rd_index = 0;
+			
 			for(int x = 0 ; x < hand.length ; x ++) {
 				for(int y = 0 ; y < board.length ; y++) {
 					if(hand[x] != null && board[y] != null){
@@ -345,16 +360,21 @@ public class GamePisti{
 						}
 					}
 				}
-			}else{
-				if(flag) {
-					return (temp_index)+1;
-				}else {
-					int returned = rd.nextInt(4);
-					return returned +1;
-				}
-					
 			}
-			return 1; //does not make sense because all possible suitation has return (At least I hope that way) 
+			
+			if(flag) {
+				return (temp_index)+1;
+			}
+			
+			while(true) {
+				rd_index = rd.nextInt(4);
+				if(hand[rd_index] != null) {
+					break;
+				}
+			}
+			return rd_index+1;
+				
+			
 		}
 		
 		
