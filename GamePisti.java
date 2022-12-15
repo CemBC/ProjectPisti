@@ -74,24 +74,32 @@ public class GamePisti{
 			}
 			
 			
-				if(dealer== 1) {
+				if(dealer== 1) {  //dealer is computer
 
 					for(int i = 0 ; i < 6 ; i ++) {
 						
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-	
+						for(int j = 0 ; j < 8 ; j++) {
+							if(j % 2 == 0) {
 							//Turn user
-							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
-							board.getToBoard(card);
+							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
+							board.getToBoard(u_card);
 							if(gameRules(board.get(),user_point)) {
 								System.out.println("YOU GET THE BOARD!");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
-							
-							
+							}
+							else{
 							//Turn Computer
-							
+							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
+							board.getToBoard(c_card);
+							if(gameRules(board.get(),computer_point)) {
+								System.out.println("I get the board!");
+							}
+							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point));
+							}
+						}
 							
 							
 						
@@ -116,27 +124,34 @@ public class GamePisti{
 						
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+						for(int j = 0 ; j < 8 ; j++) {
+							if(j % 2 == 0) {
+								
+								
+							//Turn Computer
+							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
+							board.getToBoard(c_card);
+							if(gameRules(board.get(),computer_point)) {
+								System.out.println("I get the board!");
+							}
+							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point)); 
 							
-							//Turn Computer 
-	
-	
-	
-	
-	
 							
-							
-							
-							
-							
-							
+							}else{
+								
+								
+								
 							//Turn user
-							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
-							board.getToBoard(card);
+							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
+							board.getToBoard(u_card);
 							if(gameRules(board.get(),user_point)) {
 								System.out.println("YOU GET THE BOARD!");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
+							}
 							
+							
+						}
 						
 						
 					}
@@ -303,10 +318,12 @@ public class GamePisti{
 			int temp_index = 0;
 			for(int x = 0 ; x < hand.length ; x ++) {
 				for(int y = 0 ; y < board.length ; y++) {
-					if(hand[x].substring(1,hand[x].length()).equals(board[y].substring(1,board[y].length()))) {
+					if(hand[x] != null && board[y] != null){
+						if(hand[x].substring(1,hand[x].length()).equals(board[y].substring(1,board[y].length()))) {
 						temp_index = x;
 						flag = true;
 						break;
+						}
 					}
 				}
 			}
@@ -335,7 +352,7 @@ public class GamePisti{
 				}
 					
 			}
-			return 1453;
+			return 1; //does not make sense because all possible suitation has return (At least I hope that way) 
 		}
 		
 		
