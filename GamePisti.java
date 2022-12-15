@@ -194,7 +194,7 @@ public class GamePisti{
 			try {
 			ch = inp.nextInt();
 			} catch ( Exception e ) {	
-				System.out.println("Invalid Syntax");
+				System.out.println("You should enter an integer not anything else, Try again");
 				turnCh(board, hand);
 			}
 			if(ch < 1 || ch > 4){
