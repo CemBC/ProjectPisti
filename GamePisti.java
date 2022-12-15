@@ -97,6 +97,7 @@ public class GamePisti{
 						
 						
 					
+					
 					}
 					
 					
@@ -118,6 +119,16 @@ public class GamePisti{
 							
 							//Turn Computer 
 	
+	
+	
+	
+	
+							
+							
+							
+							
+							
+							
 							//Turn user
 							String card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(card);
@@ -271,11 +282,11 @@ public class GamePisti{
                         flag = true;
                         break;
 
-                }
-				}else if(board[i].substring(1,board[i].length()).equals("J")) {
+                }else if(board[i].substring(1,board[i].length()).equals("J")) {
                 flag = true;
                 break;
 
+				}
 				}else {
                     flag = false;
                     break;
@@ -286,7 +297,51 @@ public class GamePisti{
         }
 		
 		
+		public static int compDec(String [] board, String[] hand) {			//Decision of the computer //I hope its work
+			Random rd = new Random(System.currentTimeMillis());
+			boolean flag = false;
+			int temp_index = 0;
+			for(int x = 0 ; x < hand.length ; x ++) {
+				for(int y = 0 ; y < board.length ; y++) {
+					if(hand[x].substring(1,hand[x].length()).equals(board[y].substring(1,board[y].length()))) {
+						temp_index = x;
+						flag = true;
+						break;
+					}
+				}
+			}
+			
+			
+			int card_in_board = 0;
+			for (int i = 0 ; i < board.length ; i++) {
+				if(board[i] != null) {
+					card_in_board += 1;
+				}
+			}
+			
+			
+			if(card_in_board >= 3) {
+				for(int h = 0 ; h < hand.length ; h++) {
+					if(hand[h].substring(1,hand[h].length()).equals("J")){
+						return h+1;
+					}
+				}
+			}else{
+				if(flag) {
+					return (temp_index)+1;
+				}else {
+					int returned = rd.nextInt(4);
+					return returned +1;
+				}
+					
+			}
+			return 1453;
+		}
 		
+		
+
+
+
 }
 	
 	
