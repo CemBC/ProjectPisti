@@ -32,6 +32,8 @@ public class GamePisti{
 				break;
 			}
 			//User İnterface
+			System.out.print("Enter your name =");
+			String name_player = inp.nextLine();
 			System.out.println("We'll toss a coin to choose dealer");
 			System.out.println("Head or Tail ? ");
 			System.out.println("HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;				
@@ -171,16 +173,7 @@ public class GamePisti{
 	    }	
 	}
 	
-	public static void showCache(String[] arr) { //showing the cache of the user or computer
-		System.out.print("[");
-		for(int i = 0 ; i< arr.length ; i++){
-			if(arr[i] != null){
-				System.out.print(arr[i] + " ");
-			}
-		}
-		System.out.print("]");
-		System.out.println();
-	}
+	
 	
 	
 	public static int turnCh(String[] board,String[] hand){ //turnCh = turn choice
@@ -234,9 +227,17 @@ public class GamePisti{
 		System.out.print("[");
 		for(int i = 0 ; i < hand.length ; i++) {
 			if(hand[i] != null) {
-				System.out.print(hand[i] + ", ");
+				if( i == hand.length-1) {
+					System.out.print(hand[i]);
+				}else {
+					System.out.print(hand[i] + ", ");
+				}
 			}else {
-				System.out.print(" #" + ", ");
+				if( i == hand.length-1) {
+					System.out.print("#");
+				}else {
+					System.out.print("#" + ", ");
+				}
 			}
 		}
 		System.out.print("]");
@@ -277,8 +278,8 @@ public class GamePisti{
 						temp = i;
 					}
 				}
-				cache[temp] = board[0];
-				cache[temp+1] = board[1];
+				cache[temp] = board[0]+"#";
+				cache[temp+1] = board[1]+"#";
 			}else{
 			int temp = 0;
 			for(int i = 0 ; i < cache.length ; i++) {
@@ -302,6 +303,11 @@ public class GamePisti{
 			}
 			}
 		}
+	}
+	
+	public static void showCaches(String[] cache,String name) {
+		System.out.println("THE CACHE OF THE " + name);
+		System.out.print("[");
 	}
 		
 	
