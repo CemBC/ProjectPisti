@@ -354,6 +354,13 @@ public class GamePisti{
 				}
 			}
 			
+			//----------------------------------------
+			
+			if(flag) {
+				return (temp_index)+1;
+			}
+			
+			//----------------------------------------
 			
 			if(card_in_board >= 3) {
 				for(int h = 0 ; h < hand.length ; h++) {
@@ -365,9 +372,7 @@ public class GamePisti{
 				}
 			}
 			
-			if(flag) {
-				return (temp_index)+1;
-			}
+			//----------------------------------------
 			
 			while(true) {
 				rd_index = rd.nextInt(4);
