@@ -171,13 +171,13 @@ public class GamePisti{
 				pointCalculater(cache_computer,computer_point);
 				int numberOf_user = 0;
 				int numberOf_computer = 0;
-				for(int x = 0 ; x < cache_computer; x++) {
+				for(int x = 0 ; x < cache_computer.length ; x++) {
 					if(cache_computer[x] == null) {
 						numberOf_computer = x;
 						break;
 					}
 				}
-				for(int y = 0 ; y < cache_user ; y++) {
+				for(int y = 0 ; y < cache_user.length ; y++) {
 					if(cache_user[y] == null) {
 						numberOf_user = y;
 						break;
@@ -288,9 +288,9 @@ public class GamePisti{
 				}
 			}else {
 				if( i == hand.length-1) {
-					System.out.print("#");
+					System.out.print("# ");
 				}else {
-					System.out.print("#" + ", ");
+					System.out.print("# " + ", ");
 				}
 			}
 		}
@@ -399,11 +399,11 @@ public class GamePisti{
                 flag = true;
                 break;
 
-				}
 				}else {
                     flag = false;
                     break;
                 }
+				}
             }
 		}
         return flag;
