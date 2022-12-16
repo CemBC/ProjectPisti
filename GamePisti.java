@@ -33,7 +33,7 @@ public class GamePisti{
 			}
 			//User İnterface
 			System.out.print("Enter your name =");
-			String name_player = inp.nextLine();
+			String name_user = inp.nextLine();
 			System.out.println("We'll toss a coin to choose dealer");
 			System.out.println("Head or Tail ? ");
 			System.out.println("HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;				
@@ -94,6 +94,7 @@ public class GamePisti{
 							}
 							else{
 							//Turn Computer
+							showBoard(board.get());
 							showHand(hand_computer.get());
 							System.out.println("-------");
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
@@ -134,6 +135,7 @@ public class GamePisti{
 								
 								
 							//Turn Computer
+							showBoard(board.get());
 							showHand(hand_computer.get());
 							System.out.println("-------");
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
@@ -165,12 +167,64 @@ public class GamePisti{
 					}
 				}
 				
+				pointCalculater(cache_user,user_point);
+				pointCalculater(cache_computer,computer_point);
+				int numberOf_user = 0;
+				int numberOf_computer = 0;
+				for(int x = 0 ; x < cache_computer; x++) {
+					if(cache_computer[x] == null) {
+						numberOf_computer = x;
+						break;
+					}
+				}
+				for(int y = 0 ; y < cache_user ; y++) {
+					if(cache_user[y] == null) {
+						numberOf_user = y;
+						break;
+					}
+				}
+				if(numberOf_computer > numberOf_user) {
+					computer_point += 3;
+				}else if(numberOf_computer  < numberOf_user) {
+					user_point += 3;
+				}else{
+					user_point+= 3;
+					computer_point += 3;
+				}
+					
+				
+				
+				
+				
+				
+				
+				
+				
 		
 		
 		
 		
 		
 	    }	
+	}
+	
+	
+	public static void pointCalculater(String [] cache , int point) {
+		for(int i = 0 ; i < cache.length ; i++) {
+			if(cache[i] != null){
+				if(cache[i].charAt(cache[i].length()-1) == '#') {
+					if(cache[i].equals("♦10")) {
+						point += 3;
+					}
+					else if(cache[i].equals("♣2")){
+						point += 2;
+					}
+					else{
+						point += 1;
+					}
+				}
+			}
+		}
 	}
 	
 	
@@ -308,6 +362,17 @@ public class GamePisti{
 	public static void showCaches(String[] cache,String name) {
 		System.out.println("THE CACHE OF THE " + name);
 		System.out.print("[");
+		for(int i = 0 ; i < cache.length ; i++) {
+			if(cache[i] != null) {
+				if(cache[i+1] == null) {
+					System.out.print(cache[i]);
+				}else{
+					System.out.print(cache[i] + ", ");
+				}
+			}
+		}
+		System.out.print("]");
+		System.out.println();
 	}
 		
 	
