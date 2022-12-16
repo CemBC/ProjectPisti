@@ -22,9 +22,9 @@ public class GamePisti{
 			int computer_point = 0;
 			
 			//
-			System.out.println("\t THE GAME PİŞTİ \n");
-			System.out.println("Press \"Q\" to quit the game");
-			System.out.println("Or press anything except \"Q\" to start game");
+			System.out.println("\t\t\t ----THE GAME PİŞTİ ----\n");
+			System.out.println("\t\t\t Press \"Q\" to quit the game");
+			System.out.println("\t\t Or press anything except \"Q\" to start game");
 			String Choice = inp.nextLine();
 			System.out.println("\n");
 			if(Choice.equals("q")){
@@ -348,13 +348,12 @@ public class GamePisti{
 					break;
 				}
 			}
-			
+			}
 			for(int i = 0 ; i < board.length ; i++) {
 				if(board[i] != null) {
 					board[i] = null;
 				}
 					
-			}
 			}
 		}
 	}
