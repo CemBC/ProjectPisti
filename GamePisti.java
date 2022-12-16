@@ -193,10 +193,6 @@ public class GamePisti{
 			System.out.println("Choose your card to play");
 			try {
 			ch = inp.nextInt();
-			} catch ( Exception e ) {	
-				System.out.println("You should enter an integer not anything else, Try again");
-				turnCh(board, hand);
-			}
 			if(ch < 1 || ch > 4){
 				System.out.println("There is no such a card choose carefully");
 				continue;
@@ -206,7 +202,14 @@ public class GamePisti{
 			}else {
 				break;
 			}
+			} catch ( Exception e ) {	
+				System.out.println("You should enter an integer not anything else, Try again");
+				inp.nextLine();
+			}
 		}
+			
+			
+		
 		return ch;
 	}
 	
