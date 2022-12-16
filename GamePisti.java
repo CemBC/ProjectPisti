@@ -25,6 +25,7 @@ public class GamePisti{
 			System.out.println("\t\t\t ----THE GAME PİŞTİ ----\n");
 			System.out.println("\t\t\t Press \"Q\" to quit the game");
 			System.out.println("\t\t Or press anything except \"Q\" to start game");
+			System.out.print("\t\t\t\t   ");
 			String Choice = inp.nextLine();
 			System.out.println("\n");
 			if(Choice.equals("q")){
@@ -32,12 +33,15 @@ public class GamePisti{
 				break;
 			}
 			//User İnterface
-			System.out.print("Enter your name =");
+			System.out.print("\t\tEnter your name = ");
 			String name_user = inp.nextLine();
-			System.out.println("We'll toss a coin to choose dealer");
-			System.out.println("Head or Tail ? ");
-			System.out.println("HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;				
+			System.out.println("\n");
+			System.out.println("\t\t\tWe'll toss a coin to choose dealer");
+			System.out.println("\t\t\t\t Head or Tail ? ");
+			System.out.println("\t HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;	
+			System.out.print("\t\t\t\t   ");			
 			choice = inp.nextLine();
+			System.out.println("\n");	
 			int head_tail= 0;  //1 = head    2 = tail
 			if(choice.equals("head")){
 				head_tail = 1;
@@ -50,13 +54,12 @@ public class GamePisti{
 			int computer_random_choice= rd.nextInt(2)+1;
 			
 			if(computer_random_choice == head_tail){ //1 = dealer is computer      2 = dealer is player
-				System.out.println("I am the dealer, You go first on each round");
+				System.out.println("\t\t   I am the dealer, You go first on each round");
 				dealer = 1;
 			}else{
-				System.out.println("You are the dealer, I go first on each round");
+				System.out.println("\t\t   You are the dealer, I go first on each round");
 				dealer = 2;
 			}
-			
 			//Tossing coin to decide dealer
 			
 		     deck.Shuffle();   //shuffle method with array's displayer
