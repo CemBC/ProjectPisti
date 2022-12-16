@@ -85,7 +85,7 @@ public class GamePisti{
 							//Turn user
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
-							if(gameRules(board.get(),user_point)) {
+							if(gameRules(board.get())) {
 								System.out.println("YOU GET THE BOARD!");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
@@ -97,7 +97,7 @@ public class GamePisti{
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
 							System.out.println(c_card);
 							board.getToBoard(c_card);
-							if(gameRules(board.get(),computer_point)) {
+							if(gameRules(board.get())) {
 								System.out.println("I get the board!");
 							}
 							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point));
@@ -137,7 +137,7 @@ public class GamePisti{
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
 							System.out.println(c_card);
 							board.getToBoard(c_card);
-							if(gameRules(board.get(),computer_point)) {
+							if(gameRules(board.get())) {
 								System.out.println("I get the board!");
 							}
 							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point)); 
@@ -150,7 +150,7 @@ public class GamePisti{
 							//Turn user
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
-							if(gameRules(board.get(),user_point)) {
+							if(gameRules(board.get())) {
 								System.out.println("YOU GET THE BOARD!");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
@@ -310,6 +310,33 @@ public class GamePisti{
                     flag = true;
                     break;
                 }else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality
+                        flag = true;
+                        break;
+
+                }else if(board[i].substring(1,board[i].length()).equals("J")) {
+                flag = true;
+                break;
+
+				}
+				}else {
+                    flag = false;
+                    break;
+                }
+            }
+		}
+        return flag;
+        }
+		
+	public static boolean gameRules(String[] board) { //Overriding the function
+        boolean flag = false;
+        for(int i = board.length-1 ; i > -1 ; i--) {
+            if(board[i] != null) {
+                if(i >= 1) {
+
+                if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
+                    flag = true;
+                    break;
+                }else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { 
                         flag = true;
                         break;
 
