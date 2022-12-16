@@ -270,6 +270,16 @@ public class GamePisti{
 	
 	public static void addToCache(String [] board , String [] cache , boolean a ) {
 		if(a) {
+			if(board[2] == null) {
+				int temp = 0;
+				for(int i = 0 ; i < cache.length ; i++) {
+					if(cache[i] != null) {
+						temp = i;
+					}
+				}
+				cache[temp] = board[0];
+				cache[temp+1] = board[1];
+			}else{
 			int temp = 0;
 			for(int i = 0 ; i < cache.length ; i++) {
 				if(cache[i] == null) {
@@ -289,6 +299,7 @@ public class GamePisti{
 					board[i] = null;
 				}
 					
+			}
 			}
 		}
 	}
