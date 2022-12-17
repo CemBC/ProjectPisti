@@ -33,12 +33,12 @@ public class GamePisti{
 				break;
 			}
 			//User İnterface
-			System.out.print("\t\tEnter your name = ");
+			System.out.print("Enter your name = ");
 			String name_user = inp.nextLine();
 			System.out.println("\n");
 			System.out.println("\t\t\tWe'll toss a coin to choose dealer");
 			System.out.println("\t\t\t\t Head or Tail ? ");
-			System.out.println("\t HİNT = Please type \"head\" or \"tail\" or I will choose your decision |:)") ;	
+			System.out.println("\t HİNT = Please type \"head\" or \"tail\" or I will choose your decision ^^") ;	
 			System.out.print("\t\t\t\t   ");			
 			choice = inp.nextLine();
 			System.out.println("\n");	
@@ -54,10 +54,10 @@ public class GamePisti{
 			int computer_random_choice= rd.nextInt(2)+1;
 			
 			if(computer_random_choice == head_tail){ //1 = dealer is computer      2 = dealer is player
-				System.out.println("\t\t   I am the dealer, You go first on each round");
+				System.out.println("\t\t   I am the dealer, You go first on each round\n\n");
 				dealer = 1;
 			}else{
-				System.out.println("\t\t   You are the dealer, I go first on each round");
+				System.out.println("\t\t   You are the dealer, I go first on each round\n\n");
 				dealer = 2;
 			}
 			//Tossing coin to decide dealer
@@ -172,6 +172,8 @@ public class GamePisti{
 				
 				pointCalculater(cache_user,user_point);
 				pointCalculater(cache_computer,computer_point);
+				
+				
 				int numberOf_user = 0;
 				int numberOf_computer = 0;
 				for(int x = 0 ; x < cache_computer.length ; x++) {
@@ -194,6 +196,11 @@ public class GamePisti{
 					user_point+= 3;
 					computer_point += 3;
 				}
+				
+				showCaches(cache_computer,"ME");
+				System.out.println(computer_point);
+				showCaches(cache_user,name_user);
+				System.out.println(user_point);
 					
 				
 				
@@ -215,7 +222,7 @@ public class GamePisti{
 	public static void pointCalculater(String [] cache , int point) {
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null){
-				if(cache[i].charAt(cache[i].length()-1) == '#') {
+				if(cache[i].charAt(cache[i].length()-1) != '#') {
 					if(cache[i].equals("♦10")) {
 						point += 3;
 					}
@@ -235,7 +242,7 @@ public class GamePisti{
 	
 	public static int turnCh(String[] board,String[] hand){ //turnCh = turn choice
 		Scanner inp = new Scanner(System.in);
-		System.out.println("Your turn mate!");
+		System.out.println("\t\t\t    Your turn mate!\n");
 		showBoard(board);
 		showHand(hand);
 		int ch = 0;
@@ -264,7 +271,8 @@ public class GamePisti{
 	}
 	
 	public static void showBoard(String [] board){ //Shows Board
-		System.out.println("THE BOARD");
+		System.out.println("\t\t\t\tTHE BOARD");
+		System.out.print("\t\t\t");
 		System.out.print("top-->[");
 		for(int i = board.length-1 ; i > -1 ; i--){
 			if(board[i] != null){
@@ -280,7 +288,8 @@ public class GamePisti{
 	
 	
 	public static void showHand(String[] hand){ //Shows Hand
-		System.out.println("THE HAND");
+		System.out.println("\t\t\t\tTHE HAND");
+		System.out.print("\t\t\t   ");
 		System.out.print("[");
 		for(int i = 0 ; i < hand.length ; i++) {
 			if(hand[i] != null) {
@@ -299,7 +308,7 @@ public class GamePisti{
 		}
 		System.out.print("]");
 		System.out.println();
-		System.out.println(" 1   2    3    4 ");
+		System.out.println("\t\t\t    1   2    3    4 ");
 		System.out.println("\n");
 	}
 	
