@@ -91,20 +91,18 @@ public class GamePisti{
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
 							if(gameRules(board.get())) {
-								System.out.println("YOU GET THE BOARD!");
+								System.out.println("YOU GOT THE BOARD!");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
 							}
 							else{
 							//Turn Computer
-							showBoard(board.get());
-							showHand(hand_computer.get());
-							System.out.println("-------");
+							
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
-							System.out.println(c_card);
+							
 							board.getToBoard(c_card);
 							if(gameRules(board.get())) {
-								System.out.println("I get the board!");
+								System.out.println("I got the board!");
 							}
 							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point));
 							}
@@ -138,14 +136,12 @@ public class GamePisti{
 								
 								
 							//Turn Computer
-							showBoard(board.get());
-							showHand(hand_computer.get());
-							System.out.println("-------");
+							
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
-							System.out.println(c_card);
+							
 							board.getToBoard(c_card);
 							if(gameRules(board.get())) {
-								System.out.println("I get the board!");
+								System.out.println("I got the board!");
 							}
 							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point)); 
 							
@@ -158,7 +154,7 @@ public class GamePisti{
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
 							if(gameRules(board.get())) {
-								System.out.println("YOU GET THE BOARD!");
+								System.out.println("YOU GOT THE BOARD!");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
 							}
@@ -170,8 +166,6 @@ public class GamePisti{
 					}
 				}
 				
-				pointCalculater(cache_user,user_point);
-				pointCalculater(cache_computer,computer_point);
 				
 				
 				int numberOf_user = 0;
@@ -188,20 +182,38 @@ public class GamePisti{
 						break;
 					}
 				}
-				if(numberOf_computer > numberOf_user) {
-					computer_point += 3;
-				}else if(numberOf_computer  < numberOf_user) {
-					user_point += 3;
-				}else{
-					user_point+= 3;
-					computer_point += 3;
-				}
 				
-				showCaches(cache_computer,"ME");
-				System.out.println(computer_point);
-				showCaches(cache_user,name_user);
-				System.out.println(user_point);
-					
+				
+				
+				
+				if(numberOf_computer > numberOf_user) {
+					showCaches(cache_user,name_user);
+					System.out.print("The Point Of " +name_user + " = ");
+					System.out.println(pointCalculater(cache_user,user_point));
+					System.out.println("\n");
+					showCaches(cache_computer,"ME");
+					System.out.print("The Point Of ME = ");
+					System.out.print(pointCalculater(cache_computer,computer_point)+3);
+				}else if(numberOf_computer  < numberOf_user) {
+					showCaches(cache_user,name_user);
+					System.out.print("The Point Of " +name_user + " = ");
+					System.out.println(pointCalculater(cache_user,user_point)+3);
+					System.out.println("\n");
+					showCaches(cache_computer,"ME");
+					System.out.print("The Point Of ME = ");
+					System.out.print(pointCalculater(cache_computer,computer_point));
+				}else{
+					showCaches(cache_user,name_user);
+					System.out.print("The Point Of " +name_user + " = ");
+					System.out.println(pointCalculater(cache_user,user_point));
+					System.out.println("\n");
+					showCaches(cache_computer,"ME");
+					System.out.print("The Point Of ME = ");
+					System.out.print(pointCalculater(cache_computer,computer_point));
+				}
+				System.out.println();
+				System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
+				System.out.println("\n");
 				
 				
 				
@@ -219,7 +231,7 @@ public class GamePisti{
 	}
 	
 	
-	public static void pointCalculater(String [] cache , int point) {
+	public static int pointCalculater(String [] cache , int point) {
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null){
 				if(cache[i].charAt(cache[i].length()-1) != '#') {
@@ -235,6 +247,7 @@ public class GamePisti{
 				}
 			}
 		}
+		return point;
 	}
 	
 	
@@ -371,7 +384,7 @@ public class GamePisti{
 	}
 	
 	public static void showCaches(String[] cache,String name) {
-		System.out.println("THE CACHE OF THE " + name);
+		System.out.println("THE CACHE OF " + name);
 		System.out.print("[");
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null) {
