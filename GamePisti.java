@@ -290,9 +290,11 @@ public class GamePisti{
 					if(pointCalculater(cache_computer,computer_point) > pointCalculater(cache_user,user_point)){
 						System.out.println("\t\t\tThe Winner is ME!");
 						System.out.println("\t\tYou can not defeat me, I am the master");
+						System.out.println("\t\t\t Another Game?\n\n");
 					}else{
 						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
-						System.out.println("\t\t\tLuckiest win HA?");	
+						System.out.println("\t\t\tLuckiest win HA?");
+						System.out.println("\t\t\t Another Game?\n\n");
 					}
 				}
 				
@@ -536,11 +538,11 @@ public class GamePisti{
                 flag = true;
                 break;
 
-				}
 				}else {
                     flag = false;
                     break;
                 }
+				}
             }
 		}
         return flag;
