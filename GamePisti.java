@@ -38,7 +38,7 @@ public class GamePisti{
 			System.out.println("\n");
 			System.out.println("\t\t\tWe'll toss a coin to choose dealer");
 			System.out.println("\t\t\t\t Head or Tail ? ");
-			System.out.println("\t HİNT = Please type \"head\" or \"tail\" or I will choose your decision >:)") ;	
+			System.out.println("\t HİNT = Please type \"head\" or \"tail\" or I will choose your decision |:)") ;	
 			System.out.print("\t\t\t\t   ");			
 			choice = inp.nextLine();
 			System.out.println("\n");	
