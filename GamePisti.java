@@ -33,8 +33,19 @@ public class GamePisti{
 				break;
 			}
 			//User İnterface
+			String name_user = "";
+			while(true){
 			System.out.print("Enter your name = ");
-			String name_user = inp.nextLine();
+			name_user = inp.nextLine();
+			System.out.println("Are you sure? y = yes / n = no ");
+			String sure = inp.nextLine();
+			if(sure.equals("y")) {
+				System.out.println("Alright then!");
+				break;
+			}else{
+				continue;
+			}
+			}
 			System.out.println("\n");
 			System.out.println("\t\t\tWe'll toss a coin to choose dealer");
 			System.out.println("\t\t\t\t Head or Tail ? ");
@@ -54,29 +65,47 @@ public class GamePisti{
 			int computer_random_choice= rd.nextInt(2)+1;
 			
 			if(computer_random_choice == head_tail){ //1 = dealer is computer      2 = dealer is player
-				System.out.println("\t\t   I am the dealer, You go first on each round\n\n");
+				System.out.println("\t\t   I am the dealer, You go first on each round");
+				System.out.println("\t\t\t\t You will cutting the deck\n\n");
 				dealer = 1;
 			}else{
-				System.out.println("\t\t   You are the dealer, I go first on each round\n\n");
+				System.out.println("\t\t   You are the dealer, I go first on each round");
+				System.out.println("\t\t\t\t I will cutting the deck\n\n");
 				dealer = 2;
 			}
 			//Tossing coin to decide dealer
+			System.out.println("\t\t\t\t Shuffling the deck");
+			
+				try {
+					Thread.sleep(2000);
+				}catch(InterruptedException ex) {
+					System.out.println("Something went wrong");
+				}
 			
 		     deck.Shuffle();   //shuffle method with array's displayer
 			/* for(int i = 0; i < deck.get().length; i++){
 				System.out.print(deck.get()[i] + " ");
 			} 
 			System.out.println("-------------------"); */
+			System.out.println("\t\t\t\t Cutting the deck");
+			
+				try {
+					Thread.sleep(2000);
+				}catch(InterruptedException ex) {
+					System.out.println("Something went wrong");
+				}
+			
 			 deck.cutDeck();  //cut method with array's displayer
 			/* for(int i = 0; i < deck.get().length; i++){
 				System.out.print(deck.get()[i] + " ");
 			} */
 			
-			
+			System.out.println("\n");
 			
 			for(int i = 0; i< 4 ; i++){   //getting 4 card to the board
 				board.getToBoard(deck.getCard());
 			}
+			
 			
 			
 				if(dealer== 1) {  //dealer is computer
@@ -90,21 +119,31 @@ public class GamePisti{
 							//Turn user
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
+							
 							if(gameRules(board.get())) {
-								System.out.println("YOU GOT THE BOARD!");
+								System.out.println("\t\t\t   YOU GOT THE BOARD!\n");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
+							System.out.println("\n\n");
 							}
 							else{
 							//Turn Computer
-							
+							System.out.println("\t\t\t\t MY TURN");
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
 							
+								try {
+									Thread.sleep(2000);
+								}catch(InterruptedException ex) {
+									System.out.println("Something went wrong");
+								}
+							
+							System.out.println("\t\t\t   I have played " + c_card);
 							board.getToBoard(c_card);
 							if(gameRules(board.get())) {
-								System.out.println("I got the board!");
+								System.out.println("\t\t\t   I got the board!");
 							}
 							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point));
+							System.out.println("\n\n");
 							}
 						}
 							
@@ -124,10 +163,17 @@ public class GamePisti{
 					
 				}else{ // dealer is you
 					
-					
+					showBoard(board.get());
 					
 					
 					for(int i = 0 ; i < 6 ; i ++) {
+							
+							System.out.println("\t\t\tCards are being dealt\n\n");
+							try {
+								Thread.sleep(2000);
+							}catch(InterruptedException ex) {
+								System.out.println("Something went wrong");
+							}
 						
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
@@ -136,14 +182,22 @@ public class GamePisti{
 								
 								
 							//Turn Computer
-							
+							System.out.println("\t\t\t\t MY TURN");
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
 							
+								try {
+									Thread.sleep(2000);
+								}catch(InterruptedException ex) {
+									System.out.println("Something went wrong");
+								}
+							
+							System.out.println("\t\t\t   I have played " + c_card);
 							board.getToBoard(c_card);
 							if(gameRules(board.get())) {
-								System.out.println("I got the board!");
+								System.out.println("\t\t\t   I got the board!");
 							}
 							addToCache(board.get(),cache_computer,gameRules(board.get(),computer_point)); 
+							System.out.println("\n\n");
 							
 							
 							}else{
@@ -153,10 +207,12 @@ public class GamePisti{
 							//Turn user
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
+							
 							if(gameRules(board.get())) {
-								System.out.println("YOU GOT THE BOARD!");
+								System.out.println("\t\t\t   YOU GOT THE BOARD!\n");
 							}
 							addToCache(board.get(),cache_user,gameRules(board.get(),user_point));
+							System.out.println("\n\n");
 							}
 							
 							
@@ -166,7 +222,7 @@ public class GamePisti{
 					}
 				}
 				
-				
+				System.out.println("\t\t\t\tGAME IS OVER\n\n");
 				
 				int numberOf_user = 0;
 				int numberOf_computer = 0;
@@ -194,6 +250,15 @@ public class GamePisti{
 					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point)+3);
+					System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
+					System.out.println("\n");
+					if(pointCalculater(cache_computer,computer_point)+3 > pointCalculater(cache_user,user_point)){
+						System.out.println("\t\t\tThe Winner is ME!");
+						System.out.println("\t\tYou can not defeat me, I am the master");
+					}else{
+						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
+						System.out.println("\t\t\tLuckiest win HA?");	
+					}
 				}else if(numberOf_computer  < numberOf_user) {
 					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
@@ -202,6 +267,15 @@ public class GamePisti{
 					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
+					System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
+					System.out.println("\n");
+					if(pointCalculater(cache_computer,computer_point) > pointCalculater(cache_user,user_point)+3){
+						System.out.println("\t\t\tThe Winner is ME!");
+						System.out.println("\t\tYou can not defeat me, I am the master");
+					}else{
+						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
+						System.out.println("\t\t\tLuckiest win HA?");	
+					}
 				}else{
 					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
@@ -210,10 +284,21 @@ public class GamePisti{
 					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
+					System.out.println();
+					System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
+					System.out.println("\n");
+					if(pointCalculater(cache_computer,computer_point) > pointCalculater(cache_user,user_point)){
+						System.out.println("\t\t\tThe Winner is ME!");
+						System.out.println("\t\tYou can not defeat me, I am the master");
+					}else{
+						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
+						System.out.println("\t\t\tLuckiest win HA?");	
+					}
 				}
-				System.out.println();
-				System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
-				System.out.println("\n");
+				
+				
+				
+				
 				
 				
 				
@@ -257,6 +342,7 @@ public class GamePisti{
 		Scanner inp = new Scanner(System.in);
 		System.out.println("\t\t\t    Your turn mate!\n");
 		showBoard(board);
+		System.out.println();
 		showHand(hand);
 		int ch = 0;
 		while(true){
@@ -412,7 +498,7 @@ public class GamePisti{
 
                 if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
                     point += 10;
-                    System.out.println("PİŞTİ!!");
+                    System.out.println("\t\t\t\tPİŞTİ!!");
                     flag = true;
                     break;
                 }else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality
