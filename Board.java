@@ -1,7 +1,7 @@
 public class Board{
 	private String [] board;
 	
-	public Board() {
+	public Board() {  //Constructor
 		String [] arr = new String[52];
 		this.board = arr;
 	}
@@ -20,19 +20,7 @@ public class Board{
 		}
 	}
 	
-	public void getFromBoardTo(String[] a){ // reversed for loop gettin all board to cache 
-		
-		for(int i = board.length-1 ; i > -1 ; i--){
-			if(board[i] != null) {
-				for(int j = 0; j < a.length; j++){
-					if(a[j] == null){
-						a[j] = board[i];
-						board[i]= null;
-					}
-				}		
-			}
-		}
-	}
+	
 	
 	
 	

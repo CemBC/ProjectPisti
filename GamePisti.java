@@ -27,7 +27,7 @@ public class GamePisti{
 			
 			
 			
-			
+			//showing Top10 screen
 			System.out.println("\t\t\t\t TOP 10 CHALLENGER");
 			System.out.println("\t\t  -----------------------------------");
 			Scanner reader = null;
@@ -136,7 +136,7 @@ public class GamePisti{
 			
 				if(dealer== 1) {  //dealer is computer
 
-					for(int i = 0 ; i < 6 ; i ++) {
+					for(int i = 0 ; i < 6 ; i ++) {   //52 - 4 = 48         48 /8 = 6 , 6 times dealing cards
 						
 							System.out.println("\t\t\tCards are being dealt\n\n");
 							try {
@@ -147,8 +147,9 @@ public class GamePisti{
 						
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-						for(int j = 0 ; j < 8 ; j++) {
-							if(j % 2 == 0) {
+							
+						for(int j = 0 ; j < 8 ; j++) { //each turn they are 8 cards in player hand so there will be  8 decision
+							if(j % 2 == 0) {    //primary player
 							//Turn user
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
@@ -199,7 +200,7 @@ public class GamePisti{
 					showBoard(board.get());
 					
 					
-					for(int i = 0 ; i < 6 ; i ++) {
+					for(int i = 0 ; i < 6 ; i ++) {  //52 - 4 = 48         48 /8 = 6 , 6 times dealing cards
 							
 							System.out.println("\t\t\tCards are being dealt\n\n");
 							try {
@@ -210,8 +211,9 @@ public class GamePisti{
 						
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
-						for(int j = 0 ; j < 8 ; j++) {
-							if(j % 2 == 0) {
+							
+						for(int j = 0 ; j < 8 ; j++) {  //each turn they are 8 cards in player hand so there will be  8 decision
+							if(j % 2 == 0) {   //primary player
 								
 								
 							//Turn Computer
@@ -272,9 +274,11 @@ public class GamePisti{
 					}
 				}
 				
+				//Code for adding 3 point 
 				
 				
 				
+				//Endgame Screen
 				if(numberOf_computer > numberOf_user) {
 					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
@@ -333,7 +337,7 @@ public class GamePisti{
 					}
 				}
 				
-				
+				//Writing players name and point to the Top10
 				Formatter f = null;
 				FileWriter fw = null;
 				try {
@@ -370,7 +374,7 @@ public class GamePisti{
 	}
 	
 	
-	public static int pointCalculater(String [] cache , int point) {
+	public static int pointCalculater(String [] cache , int point) { //point calculator
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null){
 				if(cache[i].charAt(cache[i].length()-1) != '#') {
@@ -401,18 +405,18 @@ public class GamePisti{
 		int ch = 0;
 		while(true){
 			System.out.println("Choose your card to play");
-			try {
+			try {                                        
 			ch = inp.nextInt();
-			if(ch < 1 || ch > 4){
+			if(ch < 1 || ch > 4){						//ArrayIndexOutOfBoundsException with if else
 				System.out.println("There is no such a card choose carefully");
 				continue;
-			}else if(hand[ch-1] == null){
+			}else if(hand[ch-1] == null){              //playing played card Exception
 				System.out.println("You have already played that card choose another");
 				continue;
 			}else {
 				break;
 			}
-			} catch ( Exception e ) {	
+			} catch ( Exception e ) {				//Exception for entering string
 				System.out.println("You should enter an integer not anything else, Try again");
 				inp.nextLine();
 			}
@@ -465,7 +469,7 @@ public class GamePisti{
 		System.out.println("\n");
 	}
 	
-	public static void showDeck(String [] deck) { //Shows Deck
+	public static void showDeck(String [] deck) { //Shows Deck , shouldnt use in interface
 		System.out.println("THE DECK");
 		System.out.print("top-->[");
 		for(int i = deck.length-1 ; i > -1 ; i--){
@@ -478,7 +482,7 @@ public class GamePisti{
 	}
 	
 	
-	public static boolean check(String [] arr) { //Checking deck's empty indexes
+	public static boolean check(String [] arr) { //Checking deck's empty indexes, I wont use that either
 		for(int i = 0 ; i < arr.length ; i++){
 			if(arr[i] != null){
 				return false;
@@ -488,9 +492,9 @@ public class GamePisti{
 	}
 	
 	
-	public static void addToCache(String [] board , String [] cache , boolean a ) {
+	public static void addToCache(String [] board , String [] cache , boolean a ) { //add,ng cache by boolean came from gameRules
 		if(a) {
-			if(board[2] == null) {
+			if(board[2] == null) {             //If its pişti adding card with #
 				int temp = 0;
 				for(int i = 0 ; i < cache.length ; i++) {
 					if(cache[i] != null) {
@@ -501,20 +505,20 @@ public class GamePisti{
 				cache[temp+1] = board[1]+"#";
 			}else{
 			int temp = 0;
-			for(int i = 0 ; i < cache.length ; i++) {
+			for(int i = 0 ; i < cache.length ; i++) {  //getting cahce's first null index
 				if(cache[i] == null) {
 					temp = i;
 					break;
 				}
 			}	
-			for(int j = 0 ; j < board.length ; j++) {
+			for(int j = 0 ; j < board.length ; j++) {  //getting boards first null index
 				if(board[j] == null) {
-					System.arraycopy(board,0,cache,temp,j);
+					System.arraycopy(board,0,cache,temp,j);  //copying board to the cache
 					break;
 				}
 			}
 			}
-			for(int i = 0 ; i < board.length ; i++) {
+			for(int i = 0 ; i < board.length ; i++) {   //deleting board
 				if(board[i] != null) {
 					board[i] = null;
 				}
@@ -526,7 +530,7 @@ public class GamePisti{
 	public static void showCaches(String[] cache,String name) {
 		System.out.println("THE CACHE OF " + name);
 		System.out.print("[");
-		for(int i = 0 ; i < cache.length ; i++) {
+		for(int i = 0 ; i < cache.length-1 ; i++) {
 			if(cache[i] != null) {
 				if(cache[i+1] == null) {
 					System.out.print(cache[i]);
@@ -544,13 +548,13 @@ public class GamePisti{
 		
 	
 	
-	public static boolean gameRules(String[] board , int point  ) {
+	public static boolean gameRules(String[] board , int point  ) {  //returns boolean fr addToCache
         boolean flag = false;
         for(int i = board.length-1 ; i > -1 ; i--) {
             if(board[i] != null) {
                 if(i >= 1) {
 
-                if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) {
+                if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) { //Pişti suitation
                     point += 10;
                     System.out.println("\t\t\t\tPİŞTİ!!");
                     flag = true;
@@ -559,7 +563,7 @@ public class GamePisti{
                         flag = true;
                         break;
 
-                }else if(board[i].substring(1,board[i].length()).equals("J")) {
+                }else if(board[i].substring(1,board[i].length()).equals("J")) {     //"J" suitation
                 flag = true;
                 break;
 
@@ -573,7 +577,7 @@ public class GamePisti{
         return flag;
         }
 		
-	public static boolean gameRules(String[] board) { //Overriding the function
+	public static boolean gameRules(String[] board) { //Overriding the function to print "gettingboard" line
         boolean flag = false;
         for(int i = board.length-1 ; i > -1 ; i--) {
             if(board[i] != null) {
@@ -601,13 +605,13 @@ public class GamePisti{
         }
 		
 		
-		public static int compDec(String [] board, String[] hand) {			//Decision of the computer //I hope its work
+		public static int compDec(String [] board, String[] hand) {			//Decision of the computer 
 			Random rd = new Random(System.currentTimeMillis());
 			boolean flag = false;
 			int temp_index = 0;
 			int rd_index = 0;
 			
-			for(int x = 0 ; x < hand.length ; x ++) {
+			for(int x = 0 ; x < hand.length ; x ++) {   //choosing matches index
 				for(int y = 0 ; y < board.length ; y++) {
 					if(hand[x] != null && board[y] != null){
 						if(hand[x].substring(1,hand[x].length()).equals(board[y].substring(1,board[y].length()))) {
@@ -621,7 +625,7 @@ public class GamePisti{
 			
 			
 			int card_in_board = 0;
-			for (int i = 0 ; i < board.length ; i++) {
+			for (int i = 0 ; i < board.length ; i++) {   //taking board's card size t decide using "J"
 				if(board[i] != null) {
 					card_in_board += 1;
 				}
@@ -629,13 +633,13 @@ public class GamePisti{
 			
 			//----------------------------------------
 			
-			if(flag) {
+			if(flag) {                    //returning matched index
 				return (temp_index)+1;
 			}
 			
 			//----------------------------------------
 			
-			if(card_in_board >= 3) {
+			if(card_in_board >= 3) {                       //If there is no match and card size is equals or bigger than 3 , using "J"
 				for(int h = 0 ; h < hand.length ; h++) {
 					if(hand[h] != null) {
 						if(hand[h].substring(1,hand[h].length()).equals("J")){
@@ -647,7 +651,7 @@ public class GamePisti{
 			
 			//----------------------------------------
 			
-			while(true) {
+			while(true) {                    //If nothing matches and no "J" throwing random card
 				rd_index = rd.nextInt(4);
 				if(hand[rd_index] != null) {
 					break;

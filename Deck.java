@@ -2,7 +2,7 @@ import java.util.Random;
 public class Deck{
 	private String[] deck;
 	
-	public Deck() {
+	public Deck() {  //Constructor
 		String [] arr = {"♠A","♠2","♠3","♠4","♠5","♠6","♠7","♠8","♠9","♠10","♠J","♠Q","♠K",
 		"♣A","♣2","♣3","♣4","♣5","♣6","♣7","♣8","♣9","♣10","♣J","♣Q","♣K",
 		"♥A","♥2","♥3","♥4","♥5","♥6","♥7","♥8","♥9","♥10","♥J","♥Q","♥K",

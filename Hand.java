@@ -1,7 +1,7 @@
 public class Hand{
 	private String[] hand;
 	
-	public Hand() {
+	public Hand() {  //Constructor
 		String [] arr = new String[4];
 		this.hand = arr;
 	}
