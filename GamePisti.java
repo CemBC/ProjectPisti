@@ -1,5 +1,9 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.util.Formatter;
+import java.nio.file.Paths;
 public class GamePisti{
 	public static void main(String [] args){
 		Scanner inp = new Scanner(System.in);
@@ -21,7 +25,21 @@ public class GamePisti{
 			int user_point = 0 ;
 			int computer_point = 0;
 			
-			//
+			Scanner reader = null;
+			try{
+				reader = new Scanner(Paths.get("Top10"));
+				while(reader.hasNextLine()){
+					System.out.println(reader.nextLine());
+				}
+			}catch(IOException ex) {
+				ex.printStackTrace();
+			}finally{
+				if(reader != null) {
+					reader.close();
+				}
+			}
+			
+			
 			System.out.println("\t\t\t ----THE GAME PİŞTİ ----\n");
 			System.out.println("\t\t\t Press \"Q\" to quit the game");
 			System.out.println("\t\t Or press anything except \"Q\" to start game");
