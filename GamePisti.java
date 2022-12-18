@@ -25,6 +25,11 @@ public class GamePisti{
 			int user_point = 0 ;
 			int computer_point = 0;
 			
+			
+			
+			
+			
+			
 			Scanner reader = null;
 			try{
 				reader = new Scanner(Paths.get("Top10"));
