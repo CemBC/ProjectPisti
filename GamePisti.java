@@ -28,13 +28,15 @@ public class GamePisti{
 			
 			
 			
-			
-			
+			System.out.println("\t\t\t\t TOP 10 CHALLENGER");
+			System.out.println("\t\t  -----------------------------------");
 			Scanner reader = null;
 			try{
 				reader = new Scanner(Paths.get("Top10"));
 				while(reader.hasNextLine()){
-					System.out.println(reader.nextLine());
+					String[] splitted = reader.nextLine().split(",");
+					System.out.println(splitted[0]+" -----> " + splitted[1]);
+					
 				}
 			}catch(IOException ex) {
 				ex.printStackTrace();
@@ -43,6 +45,7 @@ public class GamePisti{
 					reader.close();
 				}
 			}
+			System.out.println();
 			
 			
 			System.out.println("\t\t\t ----THE GAME PİŞTİ ----\n");
@@ -134,6 +137,13 @@ public class GamePisti{
 				if(dealer== 1) {  //dealer is computer
 
 					for(int i = 0 ; i < 6 ; i ++) {
+						
+							System.out.println("\t\t\tCards are being dealt\n\n");
+							try {
+								Thread.sleep(2000);
+							}catch(InterruptedException ex) {
+								System.out.println("Something went wrong");
+							}
 						
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
@@ -273,6 +283,7 @@ public class GamePisti{
 					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point)+3);
+					System.out.println();
 					System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
 					System.out.println("\n");
 					if(pointCalculater(cache_computer,computer_point)+3 > pointCalculater(cache_user,user_point)){
@@ -290,6 +301,7 @@ public class GamePisti{
 					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
+					System.out.println();
 					System.out.println("The Cards that have \"#\" sign at the end means PİSTİ");	
 					System.out.println("\n");
 					if(pointCalculater(cache_computer,computer_point) > pointCalculater(cache_user,user_point)+3){
@@ -320,6 +332,23 @@ public class GamePisti{
 						System.out.println("\t\t\t Another Game?\n\n");
 					}
 				}
+				
+				
+				Formatter f = null;
+				FileWriter fw = null;
+				try {
+					fw = new FileWriter("Top10",true);
+					f = new Formatter(fw);
+					f.format(" %s, %d\n",name_user,pointCalculater(cache_user,user_point));
+					fw.close();
+				}catch(Exception e) {
+					System.out.println("Something went wrong");
+				}finally{
+					if(f != null) {
+						f.close();
+					}
+				}
+				
 				
 				
 				
