@@ -137,7 +137,7 @@ public class GamePisti{
 				if(dealer== 1) {  //dealer is computer
 
 					for(int i = 0 ; i < 6 ; i ++) {   //52 - 4 = 48         48 /8 = 6 , 6 times dealing cards
-						
+							System.out.println("\t\t\t\tTURN " + (i+1));
 							System.out.println("\t\t\tCards are being dealt\n\n");
 							try {
 								Thread.sleep(2000);
@@ -201,7 +201,7 @@ public class GamePisti{
 					
 					
 					for(int i = 0 ; i < 6 ; i ++) {  //52 - 4 = 48         48 /8 = 6 , 6 times dealing cards
-							
+							System.out.println("\t\t\t\tTURN " + (i+1));
 							System.out.println("\t\t\tCards are being dealt\n\n");
 							try {
 								Thread.sleep(2000);
