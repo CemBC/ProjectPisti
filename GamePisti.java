@@ -278,8 +278,12 @@ public class GamePisti{
 				
 				
 				
+				
 				//Endgame Screen
+				
+				int temp_point = 0;
 				if(numberOf_computer > numberOf_user) {
+					temp_point = pointCalculater(cache_user,user_point);
 					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point));
@@ -298,6 +302,7 @@ public class GamePisti{
 						System.out.println("\t\t\tLuckiest win HA?");	
 					}
 				}else if(numberOf_computer  < numberOf_user) {
+					temp_point = pointCalculater(cache_user,user_point)+3;
 					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point)+3);
@@ -316,6 +321,7 @@ public class GamePisti{
 						System.out.println("\t\t\tLuckiest win HA?");	
 					}
 				}else{
+					temp_point = pointCalculater(cache_user,user_point);
 					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point));
@@ -343,7 +349,7 @@ public class GamePisti{
 				try {
 					fw = new FileWriter("Top10",true);
 					f = new Formatter(fw);
-					f.format(" %s, %d\n",name_user,pointCalculater(cache_user,user_point));
+					f.format(" %s, %d\n",name_user,temp_point);
 					fw.close();
 				}catch(Exception e) {
 					System.out.println("Something went wrong");
