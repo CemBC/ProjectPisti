@@ -1,9 +1,12 @@
-import java.util.Scanner;
 import java.util.Random;
+
+import java.util.Scanner;
 import java.io.IOException;
+import java.nio.file.Paths;
+
 import java.io.FileWriter;
 import java.util.Formatter;
-import java.nio.file.Paths;
+
 public class GamePisti{
 	public static void main(String [] args){
 		Scanner inp = new Scanner(System.in);
@@ -35,9 +38,8 @@ public class GamePisti{
 				reader = new Scanner(Paths.get("Top10"));
 				while(reader.hasNextLine()){
 					String[] splitted = reader.nextLine().split(",");
-					System.out.println(splitted[0]+" -----> " + splitted[1]);
-					
-				}
+					System.out.println(splitted[0]+" -----> " + splitted[1]);	
+				}	
 			}catch(IOException ex) {
 				ex.printStackTrace();
 			}finally{
@@ -46,6 +48,14 @@ public class GamePisti{
 				}
 			}
 			System.out.println();
+			//
+			
+			
+					
+			
+			
+			
+			
 			
 			
 			System.out.println("\t\t\t ----THE GAME PİŞTİ ----\n");
