@@ -299,11 +299,11 @@ public class GamePisti{
 				int temp_point = 0;
 				if(numberOf_computer > numberOf_user) {
 					temp_point = pointCalculater(cache_user,user_point);
-					showCaches(cache_user,name_user);
+					
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point));
 					System.out.println("\n");
-					showCaches(cache_computer,"ME");
+					
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point)+3);
 					System.out.println();
@@ -318,11 +318,11 @@ public class GamePisti{
 					}
 				}else if(numberOf_computer  < numberOf_user) {
 					temp_point = pointCalculater(cache_user,user_point)+3;
-					showCaches(cache_user,name_user);
+					
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point)+3);
 					System.out.println("\n");
-					showCaches(cache_computer,"ME");
+					
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
 					System.out.println();
@@ -337,11 +337,11 @@ public class GamePisti{
 					}
 				}else{
 					temp_point = pointCalculater(cache_user,user_point);
-					showCaches(cache_user,name_user);
+					
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point));
 					System.out.println("\n");
-					showCaches(cache_computer,"ME");
+					
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
 					System.out.println();
