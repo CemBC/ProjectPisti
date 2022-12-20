@@ -354,6 +354,46 @@ public class GamePisti{
 				}
 				
 				//Writing players name and point to the Top10
+				/* FileWriter fw = null;
+				Formatter f = null;
+				reader = null;
+				try{
+					reader = new Scanner(Paths.get("Top10"));
+					fw = new FileWriter("Top10",true);
+					f = new Formatter(fw);
+					if(reader.nextLine() != null) {
+					
+					while(reader.hasNextLine()) {
+						String[] temp = new String[2];
+						temp = reader.nextLine().split(",");
+						int pointer = Integer.parseInt(temp[1]);
+						if(temp_point > pointer) {
+							f.format("%s , %d\n",name_user,temp_point);	
+							fw.close();
+						}else{
+							f.format("%s",reader.nextLine());
+							fw.close();
+						}
+						
+						
+					}
+					}else{
+						f.format("%s , %d\n",name_user,temp_point);	
+						fw.close();
+					}
+				}catch(IOException e) {
+					e.printStackTrace();
+				}catch(Exception ex) {
+					System.out.println("Something went wrong");
+				}finally{
+					if(reader != null) {
+						reader.close();
+					}
+					if(f != null) {
+						f.close();
+					}
+				}  */
+				
 				Formatter f = null;
 				FileWriter fw = null;
 				try {
@@ -368,6 +408,8 @@ public class GamePisti{
 						f.close();
 					}
 				}
+				
+				
 				
 				
 				
