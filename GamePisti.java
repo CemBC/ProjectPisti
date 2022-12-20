@@ -34,12 +34,16 @@ public class GamePisti{
 			System.out.println("\t\t\t\t TOP 10 CHALLENGER");
 			System.out.println("\t\t  -----------------------------------");
 			Scanner reader = null;
-			
+			int player_size = 0;
 			try{
 				reader = new Scanner(Paths.get("Top10"));
 				while(reader.hasNextLine()){
+					if(player_size==10) {
+						break;
+					}
 					String[] splitted = reader.nextLine().split(",");
-					System.out.println(splitted[0]+" -----> " + splitted[1]);	
+					System.out.println(splitted[0]+" -----> " + splitted[1]);
+					player_size+= 1;
 				}	
 			}catch(IOException ex) {
 				ex.printStackTrace();
@@ -124,7 +128,7 @@ public class GamePisti{
 				}
 			
 		     deck.Shuffle();   //shuffle method with array's displayer
-			/* for(int i = 0; i < deck.get().length; i++){
+			 /* for(int i = 0; i < deck.get().length; i++){
 				System.out.print(deck.get()[i] + " ");
 			} 
 			System.out.println("-------------------"); */
@@ -137,7 +141,7 @@ public class GamePisti{
 				}
 			
 			 deck.cutDeck();  //cut method with array's displayer
-			/* for(int i = 0; i < deck.get().length; i++){
+			 /*for(int i = 0; i < deck.get().length; i++){
 				System.out.print(deck.get()[i] + " ");
 			} */
 			
@@ -188,6 +192,9 @@ public class GamePisti{
 							
 							System.out.println("\t\t\t   I have played " + c_card);
 							board.getToBoard(c_card);
+							
+							
+							
 							if(gameRules(board.get())) {
 								System.out.println("\t\t\t   I got the board!");
 							}
@@ -243,6 +250,9 @@ public class GamePisti{
 							
 							System.out.println("\t\t\t   I have played " + c_card);
 							board.getToBoard(c_card);
+							
+							
+							
 							if(gameRules(board.get())) {
 								System.out.println("\t\t\t   I got the board!");
 							}
@@ -299,11 +309,11 @@ public class GamePisti{
 				int temp_point = 0;
 				if(numberOf_computer > numberOf_user) {
 					temp_point = pointCalculater(cache_user,user_point);
-					
+					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point));
 					System.out.println("\n");
-					
+					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point)+3);
 					System.out.println();
@@ -318,11 +328,11 @@ public class GamePisti{
 					}
 				}else if(numberOf_computer  < numberOf_user) {
 					temp_point = pointCalculater(cache_user,user_point)+3;
-					
+					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point)+3);
 					System.out.println("\n");
-					
+					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
 					System.out.println();
@@ -337,11 +347,11 @@ public class GamePisti{
 					}
 				}else{
 					temp_point = pointCalculater(cache_user,user_point);
-					
+					showCaches(cache_user,name_user);
 					System.out.print("The Point Of " +name_user + " = ");
 					System.out.println(pointCalculater(cache_user,user_point));
 					System.out.println("\n");
-					
+					showCaches(cache_computer,"ME");
 					System.out.print("The Point Of ME = ");
 					System.out.print(pointCalculater(cache_computer,computer_point));
 					System.out.println();
@@ -675,43 +685,53 @@ public class GamePisti{
 			int temp_index = 0;
 			int rd_index = 0;
 			
-			for(int x = 0 ; x < hand.length ; x ++) {   //choosing matches index
-				for(int y = 0 ; y < board.length ; y++) {
-					if(hand[x] != null && board[y] != null){
-						if(hand[x].substring(1,hand[x].length()).equals(board[y].substring(1,board[y].length()))) {
-						temp_index = x;
-						flag = true;
-						break;
+			//----------------------------------------
+			
+			for(int y = board.length-1 ; y > -1 ; y--) {
+				if(board[y] != null) {
+					for(int x = 0 ; x < hand.length ; x ++) {   //choosing matches index
+						if(hand[x] != null){
+							if(hand[x].substring(1).equals(board[y].substring(1))) {
+								temp_index = x;
+								flag = true;
+								break;
+							}
 						}
 					}
+					break;
 				}
+				
 			}
 			
-			
-			int card_in_board = 0;
-			for (int i = 0 ; i < board.length ; i++) {   //taking board's card size t decide using "J"
-				if(board[i] != null) {
-					card_in_board += 1;
-				}
-			}
-			
-			//----------------------------------------
 			
 			if(flag) {                    //returning matched index
 				return (temp_index)+1;
 			}
 			
-			//----------------------------------------
 			
-			if(card_in_board >= 3) {                       //If there is no match and card size is equals or bigger than 3 , using "J"
-				for(int h = 0 ; h < hand.length ; h++) {
-					if(hand[h] != null) {
-						if(hand[h].substring(1,hand[h].length()).equals("J")){
-						return h+1;
+			
+			
+			
+			
+			//----------------------------------------
+			int card_in_board= 0;
+			for(int i = 0 ; i < board.length ; i++) {
+				if(board[i] != null) {
+					card_in_board += 1;
+				}
+			}
+				
+			
+			if(card_in_board >= 3 ) {
+				for(int j = 0 ; j < hand.length ; j++) {
+					if(hand[j] != null) {
+						if(hand[j].substring(1).equals("J")) {
+							return j+1;
 						}
 					}
 				}
 			}
+			
 			
 			//----------------------------------------
 			
