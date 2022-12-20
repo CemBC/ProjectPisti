@@ -34,6 +34,7 @@ public class GamePisti{
 			System.out.println("\t\t\t\t TOP 10 CHALLENGER");
 			System.out.println("\t\t  -----------------------------------");
 			Scanner reader = null;
+			
 			try{
 				reader = new Scanner(Paths.get("Top10"));
 				while(reader.hasNextLine()){
@@ -50,6 +51,31 @@ public class GamePisti{
 			System.out.println();
 			//
 			
+			Score[] scores = new Score[10];
+			int size = 0;
+			reader = null;
+			try{
+				reader = new Scanner(Paths.get("Top10"));
+				while(reader.hasNextLine()) {
+					if(size == scores.length) {
+						Score[] old = scores;
+						scores = new Score[size*2];
+						System.arraycopy(old,0,scores,0,size);
+					}
+					String[] splitted = reader.nextLine().split(",");
+					scores[size++] = new Score(splitted[0],Integer.parseInt(splitted[1]));
+				}
+			}catch(IOException e) {
+				e.printStackTrace();
+			}finally{
+				if(reader != null) {
+					reader.close();
+				}
+			}
+					
+			for(int x = 0 ; x < scores.length ; x++) {
+					System.out.print(scores[x]+" ");
+			}
 			
 					
 			
@@ -150,7 +176,7 @@ public class GamePisti{
 							System.out.println("\t\t\t\tTURN " + (i+1));
 							System.out.println("\t\t\tCards are being dealt\n\n");
 							try {
-								Thread.sleep(2000);
+								Thread.sleep(1000);
 							}catch(InterruptedException ex) {
 								System.out.println("Something went wrong");
 							}
@@ -176,7 +202,7 @@ public class GamePisti{
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
 							
 								try {
-									Thread.sleep(2000);
+									Thread.sleep(1000);
 								}catch(InterruptedException ex) {
 									System.out.println("Something went wrong");
 								}
@@ -231,7 +257,7 @@ public class GamePisti{
 							String c_card = hand_computer.getFromHand(compDec(board.get(),hand_computer.get()));
 							
 								try {
-									Thread.sleep(2000);
+									Thread.sleep(1000);
 								}catch(InterruptedException ex) {
 									System.out.println("Something went wrong");
 								}
@@ -360,7 +386,7 @@ public class GamePisti{
 				try {
 					fw = new FileWriter("Top10",true);
 					f = new Formatter(fw);
-					f.format(" %s, %d\n",name_user,temp_point);
+					f.format("%s,%d\n",name_user,temp_point);
 					fw.close();
 				}catch(Exception e) {
 					System.out.println("Something went wrong");
