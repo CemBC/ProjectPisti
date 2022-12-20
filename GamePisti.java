@@ -51,31 +51,10 @@ public class GamePisti{
 			System.out.println();
 			//
 			
-			Score[] scores = new Score[10];
-			int size = 0;
-			reader = null;
-			try{
-				reader = new Scanner(Paths.get("Top10"));
-				while(reader.hasNextLine()) {
-					if(size == scores.length) {
-						Score[] old = scores;
-						scores = new Score[size*2];
-						System.arraycopy(old,0,scores,0,size);
-					}
-					String[] splitted = reader.nextLine().split(",");
-					scores[size++] = new Score(splitted[0],Integer.parseInt(splitted[1]));
-				}
-			}catch(IOException e) {
-				e.printStackTrace();
-			}finally{
-				if(reader != null) {
-					reader.close();
-				}
-			}
+			
+			
 					
-			for(int x = 0 ; x < scores.length ; x++) {
-					System.out.print(scores[x]+" ");
-			}
+			
 			
 					
 			
@@ -334,7 +313,7 @@ public class GamePisti{
 						System.out.println("\t\t\tThe Winner is ME!");
 						System.out.println("\t\tYou can not defeat me, I am the master");
 					}else{
-						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
+						System.out.println("\t\t\tThe Winner is " + name_user+ "!");
 						System.out.println("\t\t\tLuckiest win HA?");	
 					}
 				}else if(numberOf_computer  < numberOf_user) {
@@ -353,7 +332,7 @@ public class GamePisti{
 						System.out.println("\t\t\tThe Winner is ME!");
 						System.out.println("\t\tYou can not defeat me, I am the master");
 					}else{
-						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
+						System.out.println("\t\t\tThe Winner is " + name_user+ "!");
 						System.out.println("\t\t\tLuckiest win HA?");	
 					}
 				}else{
@@ -373,7 +352,7 @@ public class GamePisti{
 						System.out.println("\t\tYou can not defeat me, I am the master");
 						System.out.println("\t\t\t Another Game?\n\n");
 					}else{
-						System.out.println("\t\t\tThe Winner is" + name_user+ "!");
+						System.out.println("\t\t\tThe Winner is " + name_user+ "!");
 						System.out.println("\t\t\tLuckiest win HA?");
 						System.out.println("\t\t\t Another Game?\n\n");
 					}
@@ -381,21 +360,61 @@ public class GamePisti{
 				
 				
 				
+				Score[] scores = new Score[10];
+				scores[0] = new Score(name_user,temp_point);
+				int size = 1;
+				reader = null;
+				try{
+					reader = new Scanner(Paths.get("Top10"));
+					while(reader.hasNextLine()) {
+						if(size == scores.length) {
+							Score[] old = scores;
+							scores = new Score[size*2];
+							System.arraycopy(old,0,scores,0,size);
+						}
+						String[] splitted = reader.nextLine().split(",");
+						scores[size++] = new Score(splitted[0],Integer.parseInt(splitted[1]));
+					}
+				}catch(IOException e) {
+					e.printStackTrace();
+				}finally{
+					if(reader != null) {
+						reader.close();
+					}
+				}
+				
+				for(int i = 0; i < scores.length-1 ; i++) {
+					boolean swapped = false;
+					Score temp_score = null;
+					for(int j = 0 ; j < scores.length-1 ; j++) {
+						if(scores[j+1] != null) {
+							if(scores[j].isSmaller(scores[j+1])) {
+								temp_score = scores[j];
+								scores[j] = scores[j+1];
+								scores[j+1] = temp_score;
+								swapped = true;
+							}
+						}
+					}
+					if(!swapped) { break; }
+				}
+				
 				Formatter f = null;
-				FileWriter fw = null;
-				try {
-					fw = new FileWriter("Top10",true);
-					f = new Formatter(fw);
-					f.format("%s,%d\n",name_user,temp_point);
-					fw.close();
-				}catch(Exception e) {
+				try{
+					f = new Formatter("Top10");
+					for(int i = 0; i < scores.length ; i++) {
+						if(scores[i] != null) {
+							f.format("%s,%d\n",scores[i].getName(),scores[i].getScore());
+						}
+					}
+				}catch(Exception ex) {
 					System.out.println("Something went wrong");
 				}finally{
 					if(f != null) {
 						f.close();
 					}
 				}
-				
+							
 				
 				
 				

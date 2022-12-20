@@ -6,9 +6,10 @@ public class Score {
 		this.name = name;
 		this.score = score;
 	}
-	
-	public boolean compareWith(int score) {
-		if(this.score > score) { return true; }
+	public String getName() { return name;}
+	public int getScore() { return score; }
+	public boolean isSmaller(Score a) {
+		if(this.score < a.score) { return true; }
 		return false;
 	}
 }
