@@ -301,7 +301,7 @@ public class GamePisti{
 				
 				//Code for adding 3 point 
 				
-				
+				showBoard(board.get());
 				
 				
 				//Endgame Screen
@@ -451,7 +451,9 @@ public class GamePisti{
 	public static int pointCalculater(String [] cache , int point) { //point calculator
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null){
-				if(cache[i].charAt(cache[i].length()-1) != '#') {
+				if(cache[i].charAt(cache[i].length()-1) == '#') {
+					point += 10;
+				}else{
 					if(cache[i].equals("♦10")) {
 						point += 3;
 					}
@@ -568,23 +570,20 @@ public class GamePisti{
 	
 	public static void addToCache(String [] board , String [] cache , boolean a ) { //add,ng cache by boolean came from gameRules
 		if(a) {
-			if(board[2] == null) {             //If its pişti adding card with #
-				int temp = 0;
+			int temp = 0;
 				for(int i = 0 ; i < cache.length ; i++) {
-					if(cache[i] != null) {
+					if(cache[i] == null) {
 						temp = i;
+						break;
 					}
 				}
+			if(board[2] == null) {             //If its pişti adding card with #
+				
 				cache[temp] = board[0]+"#";
 				cache[temp+1] = board[1]+"#";
 			}else{
-			int temp = 0;
-			for(int i = 0 ; i < cache.length ; i++) {  //getting cahce's first null index
-				if(cache[i] == null) {
-					temp = i;
-					break;
-				}
-			}	
+			
+			
 			for(int j = 0 ; j < board.length ; j++) {  //getting boards first null index
 				if(board[j] == null) {
 					System.arraycopy(board,0,cache,temp,j);  //copying board to the cache
@@ -592,6 +591,7 @@ public class GamePisti{
 				}
 			}
 			}
+			
 			for(int i = 0 ; i < board.length ; i++) {   //deleting board
 				if(board[i] != null) {
 					board[i] = null;
@@ -629,7 +629,6 @@ public class GamePisti{
                 if(i >= 1) {
 
                 if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) { //Pişti suitation
-                    point += 10;
                     System.out.println("\t\t\t\tPİŞTİ!!");
                     flag = true;
                     break;
