@@ -388,6 +388,8 @@ public class GamePisti{
 						}
 					}catch(IOException e) {
 						e.printStackTrace();
+					}catch(ArrayIndexOutOfBoundsException e) {
+						System.out.println();
 					}finally{
 						if(reader != null) {
 							reader.close();
