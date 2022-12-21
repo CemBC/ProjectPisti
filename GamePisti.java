@@ -42,9 +42,11 @@ public class GamePisti{
 						break;
 					}
 					String[] splitted = reader.nextLine().split(",");
-					System.out.println(splitted[0]+" -----> " + splitted[1]);
+					System.out.println("\t\t\t"+(player_size+1)+". "+ splitted[0]+" -----> " + splitted[1]);
 					player_size+= 1;
-				}	
+				}
+			}catch(ArrayIndexOutOfBoundsException e) {
+				System.out.println();
 			}catch(IOException ex) {
 				ex.printStackTrace();
 			}finally{
@@ -369,62 +371,64 @@ public class GamePisti{
 				}
 				
 				
-				
-				Score[] scores = new Score[10];
-				scores[0] = new Score(name_user,temp_point);
-				int size = 1;
-				reader = null;
-				try{
-					reader = new Scanner(Paths.get("Top10"));
-					while(reader.hasNextLine()) {
-						if(size == scores.length) {
-							Score[] old = scores;
-							scores = new Score[size*2];
-							System.arraycopy(old,0,scores,0,size);
+					Score[] scores = new Score[10];
+					scores[0] = new Score(name_user,temp_point);
+					int size = 1;
+					reader = null;
+					try{
+						reader = new Scanner(Paths.get("Top10"));
+						while(reader.hasNextLine()) {
+							if(size == scores.length) {
+								Score[] old = scores;
+								scores = new Score[size*2];
+								System.arraycopy(old,0,scores,0,size);
+							}
+							String[] splitted = reader.nextLine().split(",");
+							scores[size++] = new Score(splitted[0],Integer.parseInt(splitted[1]));
 						}
-						String[] splitted = reader.nextLine().split(",");
-						scores[size++] = new Score(splitted[0],Integer.parseInt(splitted[1]));
+					}catch(IOException e) {
+						e.printStackTrace();
+					}finally{
+						if(reader != null) {
+							reader.close();
+						}
 					}
-				}catch(IOException e) {
-					e.printStackTrace();
-				}finally{
-					if(reader != null) {
-						reader.close();
-					}
-				}
 				
-				for(int i = 0; i < scores.length-1 ; i++) {
-					boolean swapped = false;
-					Score temp_score = null;
-					for(int j = 0 ; j < scores.length-1 ; j++) {
-						if(scores[j+1] != null) {
-							if(scores[j].isSmaller(scores[j+1])) {
-								temp_score = scores[j];
-								scores[j] = scores[j+1];
-								scores[j+1] = temp_score;
-								swapped = true;
+					for(int i = 0; i < scores.length-1 ; i++) {
+						boolean swapped = false;
+						Score temp_score = null;
+						for(int j = 0 ; j < scores.length-1 ; j++) {
+							if(scores[j+1] != null) {
+								if(scores[j].isSmaller(scores[j+1])) {
+									temp_score = scores[j];
+									scores[j] = scores[j+1];
+									scores[j+1] = temp_score;
+									swapped = true;
+								}
 							}
 						}
+						if(!swapped) { break; }
 					}
-					if(!swapped) { break; }
-				}
 				
-				Formatter f = null;
-				try{
-					f = new Formatter("Top10");
-					for(int i = 0; i < scores.length ; i++) {
-						if(scores[i] != null) {
-							f.format("%s,%d\n",scores[i].getName(),scores[i].getScore());
+					Formatter f = null;
+					try{
+						f = new Formatter("Top10");
+						for(int i = 0; i < scores.length ; i++) {
+							if(scores[i] != null) {
+								f.format("%s,%d\n",scores[i].getName(),scores[i].getScore());
+							}
+						}
+					}catch(Exception ex) {
+						System.out.println("Something went wrong");
+					}finally{
+						if(f != null) {
+							f.close();
 						}
 					}
-				}catch(Exception ex) {
-					System.out.println("Something went wrong");
-				}finally{
-					if(f != null) {
-						f.close();
-					}
-				}
-							
+					
+						
+				
+					
 				
 				
 				
@@ -452,7 +456,7 @@ public class GamePisti{
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null){
 				if(cache[i].charAt(cache[i].length()-1) == '#') {
-					point += 10;
+					point += 5;
 				}else{
 					if(cache[i].equals("♦10")) {
 						point += 3;
