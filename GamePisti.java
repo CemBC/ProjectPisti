@@ -69,7 +69,7 @@ public class GamePisti{
 			
 			
 			
-			System.out.println("\t\t\t ----THE GAME PİŞTİ ----\n");
+			System.out.println("\t\t\t ----THE GAME PISTI ----\n");
 			System.out.println("\t\t\t Press \"Q\" to quit the game");
 			System.out.println("\t\t Or press anything except \"Q\" to start game");
 			System.out.print("\t\t\t\t   ");
@@ -635,7 +635,7 @@ public class GamePisti{
                 if(i >= 1) {
 
                 if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) { //Pişti suitation
-                    System.out.println("\t\t\t\tPİŞTİ!!");
+                    System.out.println("\t\t\t\tPISTIIII!!");
                     flag = true;
                     break;
                 }else if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) ) { //removing symbols and checking card name equality
