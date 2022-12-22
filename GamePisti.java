@@ -20,13 +20,13 @@ public class GamePisti{
 			Hand hand_player = new Hand();     //Adding objects to the main code
 			Board board = new Board();         // }
 			
-			boolean flag = true;
-			String choice;          //Adding variables for future codes
-			int dealer;
-			String [] cache_user = new String[52];
-			String [] cache_computer = new String[52];
-			int user_point = 0 ;
-			int computer_point = 0;
+			
+			String choice;          //Choice of the head or tail
+			int dealer;				//variable dealer to control flow of the code
+			String [] cache_user = new String[52];  //cache of the user
+			String [] cache_computer = new String[52]; //cache of the computer
+			int user_point = 0 ;                       //point of the user	
+			int computer_point = 0;					//point of the computer
 			
 			
 			
@@ -38,14 +38,14 @@ public class GamePisti{
 			try{
 				reader = new Scanner(Paths.get("Top10"));
 				while(reader.hasNextLine()){
-					if(player_size==10) {
+					if(player_size==10) {  //To show only first best 10 player
 						break;
 					}
 					String[] splitted = reader.nextLine().split(",");
 					System.out.println("\t\t\t"+(player_size+1)+". "+ splitted[0]+" -----> " + splitted[1]);
 					player_size+= 1;
 				}
-			}catch(ArrayIndexOutOfBoundsException e) {
+			}catch(ArrayIndexOutOfBoundsException e) {  //if there is nothing to show on Top10 file that catch skips the exception
 				System.out.println();
 			}catch(IOException ex) {
 				ex.printStackTrace();
@@ -68,7 +68,7 @@ public class GamePisti{
 			
 			
 			
-			
+			// Game interface
 			System.out.println("\t\t\t ----THE GAME PISTI ----\n");
 			System.out.println("\t\t\t Press \"Q\" to quit the game");
 			System.out.println("\t\t Or press anything except \"Q\" to start game");
@@ -166,11 +166,11 @@ public class GamePisti{
 								System.out.println("Something went wrong");
 							}
 						
-							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());  //dealing cards
 							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							
 						for(int j = 0 ; j < 8 ; j++) { //each turn they are 8 cards in player hand so there will be  8 decision
-							if(j % 2 == 0) {    //primary player
+							if(j % 2 == 0) {    //initial  player for each round
 							//Turn user
 							String u_card = hand_player.getFromHand(turnCh(board.get(),hand_player.get()));
 							board.getToBoard(u_card);
@@ -233,11 +233,11 @@ public class GamePisti{
 								System.out.println("Something went wrong");
 							}
 						
-							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
+							hand_computer.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());   //dealing cards
 							hand_player.getToHand(deck.getCard(),deck.getCard(),deck.getCard(),deck.getCard());
 							
 						for(int j = 0 ; j < 8 ; j++) {  //each turn they are 8 cards in player hand so there will be  8 decision
-							if(j % 2 == 0) {   //primary player
+							if(j % 2 == 0) {   //initial player for each round
 								
 								
 							//Turn Computer
@@ -285,7 +285,7 @@ public class GamePisti{
 				}
 				
 				System.out.println("\t\t\t\tGAME IS OVER\n\n");
-				
+				//That code which is below takes number of cards for each player has
 				int numberOf_user = 0;
 				int numberOf_computer = 0;
 				for(int x = 0 ; x < cache_computer.length ; x++) {
@@ -301,12 +301,12 @@ public class GamePisti{
 					}
 				}
 				
-				//Code for adding 3 point 
+				
 				
 				showBoard(board.get());
 				
 				
-				//Endgame Screen
+				//Endgame Screen with adding 3 points for player who has more cards
 				
 				int temp_point = 0;
 				if(numberOf_computer > numberOf_user) {
@@ -370,12 +370,14 @@ public class GamePisti{
 					}
 				}
 				
-				
+					//At the code which is below Top10 list have read by code and store them in to the Score class than into tha class's array
+					//After that that array have bubble sorted to format Top10 file appropriately
+					//Then formatted the Top10 file by using Player's array thus display of the top10 player will be shown sequentially
 					Score[] scores = new Score[10];
 					scores[0] = new Score(name_user,temp_point);
 					int size = 1;
 					reader = null;
-					try{
+					try{          //reading and storing into array
 						reader = new Scanner(Paths.get("Top10"));
 						while(reader.hasNextLine()) {
 							if(size == scores.length) {
@@ -396,7 +398,7 @@ public class GamePisti{
 						}
 					}
 				
-					for(int i = 0; i < scores.length-1 ; i++) {
+					for(int i = 0; i < scores.length-1 ; i++) {  //bubble sort
 						boolean swapped = false;
 						Score temp_score = null;
 						for(int j = 0 ; j < scores.length-1 ; j++) {
@@ -413,7 +415,7 @@ public class GamePisti{
 					}
 				
 					Formatter f = null;
-					try{
+					try{           //Formating top10 file
 						f = new Formatter("Top10");
 						for(int i = 0; i < scores.length ; i++) {
 							if(scores[i] != null) {
@@ -457,7 +459,7 @@ public class GamePisti{
 	public static int pointCalculater(String [] cache , int point) { //point calculator
 		for(int i = 0 ; i < cache.length ; i++) {
 			if(cache[i] != null){
-				if(cache[i].charAt(cache[i].length()-1) == '#') {
+				if(cache[i].charAt(cache[i].length()-1) == '#') {   //İf card has  '#' end of it that means this card is pişti card, each pişti card is 5 point because there will  be 2 cards for each pişti
 					point += 5;
 				}else{
 					if(cache[i].equals("♦10")) {
@@ -551,7 +553,7 @@ public class GamePisti{
 		System.out.println("\n");
 	}
 	
-	public static void showDeck(String [] deck) { //Shows Deck , shouldnt use in interface
+	public static void showDeck(String [] deck) { //Shows Deck , I didnt use that in source code just check for flow and functions affect
 		System.out.println("THE DECK");
 		System.out.print("top-->[");
 		for(int i = deck.length-1 ; i > -1 ; i--){
@@ -564,7 +566,7 @@ public class GamePisti{
 	}
 	
 	
-	public static boolean check(String [] arr) { //Checking deck's empty indexes, I wont use that either
+	public static boolean check(String [] arr) { //Checking deck's empty indexes, I didnt use that either, just to check flow of code
 		for(int i = 0 ; i < arr.length ; i++){
 			if(arr[i] != null){
 				return false;
@@ -574,7 +576,7 @@ public class GamePisti{
 	}
 	
 	
-	public static void addToCache(String [] board , String [] cache , boolean a ) { //add,ng cache by boolean came from gameRules
+	public static void addToCache(String [] board , String [] cache , boolean a ) { //adding cache by boolean came from gameRules
 		if(a) {
 			int temp = 0;
 				for(int i = 0 ; i < cache.length ; i++) {
@@ -583,10 +585,13 @@ public class GamePisti{
 						break;
 					}
 				}
-			if(board[2] == null) {             //If its pişti adding card with #
 				
+				
+			if(board[2] == null) {				//If its pişti adding card with #
+				if(board[0].substring(1).equals(board[1].substring(1))){
 				cache[temp] = board[0]+"#";
 				cache[temp+1] = board[1]+"#";
+				}
 			}else{
 			
 			
@@ -607,7 +612,7 @@ public class GamePisti{
 		}
 	}
 	
-	public static void showCaches(String[] cache,String name) {
+	public static void showCaches(String[] cache,String name) {  //Shows cache of the player or computer
 		System.out.println("THE CACHE OF " + name);
 		System.out.print("[");
 		for(int i = 0 ; i < cache.length-1 ; i++) {
@@ -628,11 +633,11 @@ public class GamePisti{
 		
 	
 	
-	public static boolean gameRules(String[] board , int point  ) {  //returns boolean fr addToCache
+	public static boolean gameRules(String[] board , int point  ) {  //returns boolean for addToCache
         boolean flag = false;
         for(int i = board.length-1 ; i > -1 ; i--) {
             if(board[i] != null) {
-                if(i >= 1) {
+                if(i >= 1)     //If there is no card on the board there will be an NullException, that if flow checks that
 
                 if(board[i].substring(1,board[i].length()).equals(board[i-1].substring(1,board[i-1].length())) && i == 1) { //Pişti suitation
                     System.out.println("\t\t\t\tPISTIIII!!");
@@ -652,11 +657,13 @@ public class GamePisti{
                 }
 				}
             }
+			return flag;
 		}
-        return flag;
-        }
+        
+        
 		
-	public static boolean gameRules(String[] board) { //Overriding the function to print "gettingboard" line
+	public static boolean gameRules(String[] board) { //Overriding the function to print "gettingboard" line // In the beginning of the project there was point adder into tha gameRules function, after I 
+													  //have finished the project I deleted that, I didnt want to mixed up everything so the code is still using that function however it's meanless
         boolean flag = false;
         for(int i = board.length-1 ; i > -1 ; i--) {
             if(board[i] != null) {
@@ -719,7 +726,7 @@ public class GamePisti{
 			
 			
 			//----------------------------------------
-			int card_in_board= 0;
+			int card_in_board= 0;                      //ıf there is more than 2 cards on the board computer will throw a "J" card if it has
 			for(int i = 0 ; i < board.length ; i++) {
 				if(board[i] != null) {
 					card_in_board += 1;
