@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.io.IOException;
 import java.nio.file.Paths;
-
+import java.io.FileWriter;
 import java.io.FileWriter;
 import java.util.Formatter;
 
@@ -12,6 +12,20 @@ public class GamePisti{
 		Scanner inp = new Scanner(System.in);
 		Random rd = new Random(System.currentTimeMillis());
 		
+		Formatter f = null;           //If there is no file as 'Top10' create that file with file writer and format that file with ' "" ' because ı dont want to append anything else when everytime game runs
+		FileWriter fw = null;
+		try{
+			fw = new FileWriter("Top10",true);
+			f = new Formatter(fw);
+			f.format("");
+			fw.close();
+		}catch(Exception e) {
+			System.out.println("Something went wrong");
+		}finally{
+			if(f != null) {
+				f.close();
+			}
+		}
 		
 		
 		while(true) {
@@ -414,7 +428,7 @@ public class GamePisti{
 						if(!swapped) { break; }
 					}
 				
-					Formatter f = null;
+					f = null;
 					try{           //Formating top10 file
 						f = new Formatter("Top10");
 						for(int i = 0; i < scores.length ; i++) {
