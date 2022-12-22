@@ -601,10 +601,13 @@ public class GamePisti{
 				}
 				
 				
-			if(board[2] == null) {				//If its pişti adding card with #
+			if(board[2] == null) {				//If its pişti adding card with # , If its not (for Example you throw J on board when board has only one card) it adds normally 
 				if(board[0].substring(1).equals(board[1].substring(1))){
 				cache[temp] = board[0]+"#";
 				cache[temp+1] = board[1]+"#";
+				}else{
+					cache[temp] = board[0];
+					cache[temp+1] = board[1];
 				}
 			}else{
 			
